@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="130dp" >
+	
+    <!--单层书架左边框  -->
+	<ImageView android:id="@+id/shelf_left_id"
+           	   android:layout_width="26.7dp"
+           	   android:layout_height="34.7dp"
+           	   android:layout_alignParentLeft="true"
+           	   android:layout_alignParentBottom="true"
+           	   android:background="@drawable/bookshelf_layer_left"/>
+	
+	<!--单层书架中间图  -->
+	<FrameLayout android:layout_width="268dp"
+   		  android:layout_height="130dp"
+   		  android:layout_toLeftOf="@+id/shelf_right_id"
+   		  android:layout_toRightOf="@+id/shelf_left_id"
+   		  android:layout_alignParentBottom="true">
+	    <ImageView android:id="@+id/shelf_center_back"
+	        android:src="@drawable/bookshelf_layer_center"
+	        android:scaleType="fitXY" android:layout_gravity="bottom"
+        	   android:layout_width="fill_parent"
+        	   android:layout_height="34.7dp"
+        	   android:layout_alignParentBottom="true"/>
+		<LinearLayout android:id="@+id/shelf_center_id"
+    		  android:layout_width="fill_parent"
+    		  android:layout_height="fill_parent"
+    		  android:orientation="horizontal"/>
+	</FrameLayout>
+	
+	<!-- 单层书架右边框 -->
+	<ImageView android:id="@+id/shelf_right_id"
+           	   android:layout_width="25.3dp"
+           	   android:layout_height="34.7dp"
+           	   android:layout_alignParentRight="true"
+           	   android:layout_alignParentBottom="true"
+           	   android:src="@drawable/bookshelf_layer_right"/>
+    
+
+</RelativeLayout>
+

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.alkaid.ojpl"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="4" />
+    <application
+        android:name=".common.Global"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" 
+         android:theme="@style/ThemeActivity">
+        <activity
+            android:label="@string/app_name"
+            android:name=".view.Welcome" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.BookShelf" />
+        <activity android:name=".view.LessonList" />
+        <activity android:name=".view.FiftyMap"/>
+        <activity android:name=".view.LessonContents"/>
+        <activity android:name="com.umeng.fb.ui.SendFeedback"
+    				android:windowSoftInputMode="adjustResize" />
+        <!--友盟FeedBack  -->
+		<activity android:name="com.umeng.fb.ui.FeedbackConversations" />
+		<activity android:name="com.umeng.fb.ui.FeedbackConversation"
+    				android:configChanges="keyboard" />
+		<!--友盟SNS  -->
+		<activity android:name="com.umeng.api.activity.OauthActivity"
+                  android:screenOrientation="unspecified"
+                  android:windowSoftInputMode="adjustResize"
+                  android:configChanges="orientation|keyboardHidden">
+        </activity>
+        <activity android:name="com.umeng.api.activity.UpdateStatusActivity"
+                  android:theme="@style/Theme.IOSched"
+                  android:windowSoftInputMode="stateVisible|adjustResize"
+                  android:screenOrientation="unspecified"
+                  android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action   android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data     android:scheme="schema…"/>
+            </intent-filter>
+        </activity>
+		<activity android:name="net.miidi.credit.MiidiWebViewActivity" /> 
+		<!-- 友盟自动更新service -->
+		<service
+		    android:name="com.umeng.common.net.DownloadingService"
+		    android:exported="true"
+		    android:process=":DownloadingService" >
+		</service>
+        <!-- 友盟Appkey -->
+        <meta-data android:value="4fcca333527015597a000010" android:name="UMENG_APPKEY"/> 
+        
+        <!-- 万普积分墙 -->
+        <activity android:name="com.waps.OffersWebView" android:configChanges="keyboardHidden|orientation"/> 
+		<!--以下属性为应用ID,从万普后台获取--> 
+		<meta-data android:name="WAPS_ID" android:value="8f76edb240ea177c9ae2adc4b7a11b65" /> 
+		<!--以下属性为分发渠道ID,编码表参见本文档末附表--> 
+		<meta-data android:value="WAPS" android:name="WAPS_PID" />  
+        <meta-data android:value="WAPS" android:name="UMENG_CHANNEL"/> 
+		<!-- <meta-data android:value="WAPS" android:name="WAPS_PID" />  
+        <meta-data android:value="多盟" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="QQ" android:name="WAPS_PID" />  
+        <meta-data android:value="腾讯应用" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="QQ" android:name="WAPS_PID" />  
+        <meta-data android:value="新浪微博" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="QQ" android:name="WAPS_PID" />  
+        <meta-data android:value="人人网" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="91" android:name="WAPS_PID" />  
+        <meta-data android:value="91手机助手" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="hiapk" android:name="WAPS_PID" />  
+        <meta-data android:value="安卓市场" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="gfan" android:name="WAPS_PID" />  
+        <meta-data android:value="机锋" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="appChina" android:name="WAPS_PID" />  
+        <meta-data android:value="应用汇" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="eoe" android:name="WAPS_PID" />  
+        <meta-data android:value="eoo优亿" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="mumayi" android:name="WAPS_PID" />  
+        <meta-data android:value="木蚂蚁" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="nduoa" android:name="WAPS_PID" />  
+        <meta-data android:value="N多" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="goapk" android:name="WAPS_PID" />  
+        <meta-data android:value="安智" android:name="UMENG_CHANNEL"/> 
+        
+        <meta-data android:value="neng" android:name="WAPS_PID" /> 
+        <meta-data android:value="能助手" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="samsung" android:name="WAPS_PID" />  
+        <meta-data android:value="三星" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="coolmart" android:name="WAPS_PID" />  
+        <meta-data android:value="酷派" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="meizu" android:name="WAPS_PID" />  
+        <meta-data android:value="魅族市场" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="3G" android:name="WAPS_PID" />  
+        <meta-data android:value="3G安卓市场" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="paojiao" android:name="WAPS_PID" />  
+        <meta-data android:value="泡椒" android:name="UMENG_CHANNEL"/> 
+        
+        <meta-data android:value="anfone" android:name="WAPS_PID" />  
+        <meta-data android:value="安丰" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="aimi" android:name="WAPS_PID" />  
+        <meta-data android:value="爱米" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="iAndroid" android:name="WAPS_PID" />  
+        <meta-data android:value="爱卓" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="star" android:name="WAPS_PID" />  
+        <meta-data android:value="安卓星空" android:name="UMENG_CHANNEL"/> 
+        
+        <meta-data android:value="waptw" android:name="WAPS_PID" />  
+        <meta-data android:value="天网" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="baoruan" android:name="WAPS_PID" />  
+        <meta-data android:value="宝软" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="feiliu" android:name="WAPS_PID" />  
+        <meta-data android:value="飞流" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="digua" android:name="WAPS_PID" />  
+        <meta-data android:value="地瓜游戏" android:name="UMENG_CHANNEL"/> -->
+		
+		<!-- 多盟 -->
+		<activity android:name="cn.domob.android.ads.DomobActivity" android:theme="@android:style/Theme.Translucent"/>
+		<meta-data android:value="56OJzwHIuMwLtc3L0d" android:name="DOMOB_PID" />  
+		<!-- 测试模式  上线时改为false -->
+		<meta-data android:value="false" android:name="DOMOB_TEST_MODE"/>  
+    </application>
+    
+    <!-- 基本权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>  
+    <uses-permission android:name="android.permission.INTERNET" />    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
+	<uses-permission android:name="android.permission.GET_TASKS" />
+	<uses-permission android:name="android.permission.READ_LOGS"/>
+	<!--以下两个权限为可选项，用于支持特殊广告形式-->
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+	<uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS"/>
+	
+</manifest>
