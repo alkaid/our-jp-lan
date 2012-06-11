@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, OurJpLangActivity!</string>
+    <string name="app_name">日语初学者</string>
+	<string name="loading">正在加载...</string>
+	<string name="initNotFinished">数据未加载完成</string>	
+	<string name="er_connect">网络连接有异常</string>
+</resources>

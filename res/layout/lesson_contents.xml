@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <!-- 顶部logo或广告 -->
+	<RelativeLayout android:id="@+id/rlTitle" android:layout_width="fill_parent" android:layout_height="55dp"
+	    android:background="@drawable/lyriclist_header"
+	    android:layout_alignParentTop="true">
+	    <Button android:id="@+id/btnBack" android:background="@drawable/sel_button"
+	        android:layout_width="60dp" android:layout_height="36dp"
+	        android:layout_centerVertical="true"
+	        android:text="返回" android:textSize="13sp" android:textColor="@color/white"
+	        android:layout_marginLeft="6dp" />
+	    <TextView android:id="@+id/tvTitle" android:layout_width="170dp" android:layout_height="fill_parent"
+	        android:text="大家的日语" android:textColor="@color/white" android:textSize="15sp" 
+	        android:gravity="center" android:layout_centerInParent="true"/>
+	    <Button android:id="@+id/btnSetting" android:background="@drawable/sel_button"
+	        android:layout_centerVertical="true"
+	        android:layout_width="50dp" android:layout_height="36dp" android:focusable="true"
+	        android:text="设置" android:textSize="13sp" android:textColor="@color/white"
+	        android:layout_marginRight="6.4dp" 
+	        android:layout_alignParentRight="true" />
+	</RelativeLayout>
+	<!-- 导航栏 -->
+    <LinearLayout android:id="@+id/llTab" android:layout_width="fill_parent" android:layout_height="29dp"
+        android:layout_below="@id/rlTitle" android:background="@drawable/nav_bg"/>
+    <!-- 播放器 -->
+    <RelativeLayout android:id="@+id/rlAudio" android:layout_width="fill_parent" android:layout_height="48dp"
+        android:background="@drawable/bottom_bg" android:paddingTop="4dp"
+        android:layout_alignParentBottom="true">
+        <LinearLayout android:id="@+id/llSeekBar" android:orientation="horizontal"
+            android:layout_width="wrap_content"	android:layout_height="wrap_content">
+            <Button android:id="@+id/btnPlay" android:background="@drawable/sel_play"
+                android:layout_width="35dp" android:layout_height="35dp"
+	        	android:layout_marginLeft="4dp"/>
+            <TextView android:id="@+id/tvCurrentTime" android:background="@android:color/transparent"
+                android:text="00:00" android:textColor="@color/white" android:textSize="10sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:gravity="center_vertical"/>
+            <SeekBar android:id="@+id/sbAudio" android:progressDrawable="@drawable/seekbar_style"
+                android:thumb="@drawable/thumb_normal" android:layout_gravity="center_vertical"
+                android:layout_width="165dp" android:layout_height="19dp"
+                android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+            <TextView android:id="@+id/tvTotalTime" android:background="@android:color/transparent"
+                android:text="00:00" android:textColor="@color/white" android:textSize="10sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:gravity="center_vertical"/>
+            <TextView android:id="@+id/tvCurrentType" android:background="@android:color/transparent"
+                android:text="单词" android:textColor="@color/white" android:textSize="12sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:gravity="center_vertical" android:layout_marginLeft="4dp"/>
+        </LinearLayout>
+        <Button android:id="@+id/btnReplay" android:background="@drawable/sel_cancel"
+                android:layout_width="40dp" android:layout_height="fill_parent"
+                android:layout_centerHorizontal="true" android:layout_alignParentBottom="true"
+	        	android:layout_marginBottom="4dp" android:visibility="gone"/>
+        <Button android:id="@+id/btnPrevious" android:background="@drawable/sel_previous"
+                android:layout_width="40dp" android:layout_height="fill_parent"
+                android:layout_alignTop="@id/btnReplay" android:layout_toLeftOf="@id/btnReplay"
+	        	android:layout_marginRight="32dp" android:layout_marginBottom="4dp"
+	        	android:visibility="gone"/>
+        <Button android:id="@+id/btnNext" android:background="@drawable/sel_next"
+                android:layout_width="40dp" android:layout_height="fill_parent"
+                android:layout_alignTop="@id/btnReplay" android:layout_toRightOf="@id/btnReplay"
+	        	android:layout_marginLeft="32dp" android:layout_marginBottom="4dp"
+	        	android:visibility="gone"/>
+    </RelativeLayout>
+     <!-- 具体内容 -->
+    <!-- <com.alkaid.ojpl.view.ui.WorkSpace android:id="@+id/wsArticle" android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:layout_below="@id/llTab" android:layout_above="@id/rlAudio" /> -->
+	<LinearLayout android:id="@+id/llArticle" android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:layout_below="@id/llTab" android:layout_above="@id/rlAudio" android:background="@drawable/text_bg" />
+</RelativeLayout>

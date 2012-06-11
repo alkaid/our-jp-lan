@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/list_text_bg"
+    android:orientation="vertical" >
+	<!-- 标题 -->
+    <RelativeLayout android:id="@+id/title_id"
+		android:layout_width="fill_parent" android:layout_height="55dp"
+		android:layout_alignParentTop="true"
+		android:background="@drawable/bookshelf_header_bg">
+        <Button android:id="@+id/btnBack" android:background="@drawable/sel_button"
+	        android:layout_width="60dp" android:layout_height="36dp"
+	        android:layout_centerVertical="true"
+	        android:text="返回" android:textSize="13sp" android:textColor="@color/white"
+	        android:layout_marginLeft="6dp" />
+        <ImageView android:id="@+id/title_image_id"
+       	   android:layout_width="wrap_content"
+       	   android:layout_height="wrap_content"
+       	   android:layout_centerInParent="true"
+       	   android:background="@drawable/bookshelf_header_logo"/>
+    </RelativeLayout>
+    
+    <LinearLayout android:id="@+id/llAd" 
+        android:layout_below="@id/title_id"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <!-- 课文列表 -->
+    <ListView android:id="@+id/lesson_section_id"
+      android:layout_below="@+id/llAd" android:layout_alignParentBottom="true"
+   	  android:layout_width="fill_parent" android:layout_height="fill_parent"
+   	  android:scrollbars="none" android:divider="@drawable/line"
+   	  android:dividerHeight="1dp"/>
+</RelativeLayout>

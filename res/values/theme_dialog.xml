@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- <style name="WindowTitleBackground_coffee">
+		<item name="android:background">@drawable/dialog_title</item>
+	</style> -->
+	<!-- 自定义Dialog -->
+    <style name="Theme.Dialog" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@drawable/dialog</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground_coffee</item> -->
+    </style>
+    <!-- 自定义AlertDialog -->
+    <style name="AlertDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <!-- 自定义Activity动画 -->
+    <style mce_bogus="1" name="ThemeActivity">
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style mce_bogus="1" name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/step_leftin</item>
+        <item name="android:activityOpenExitAnimation">@anim/step_leftout</item>
+        <item name="android:activityCloseEnterAnimation">@anim/step_rightin</item>
+        <item name="android:activityCloseExitAnimation">@anim/step_rightout</item>
+    </style>
+</resources>
+
