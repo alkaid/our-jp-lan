@@ -40,7 +40,6 @@ import android.widget.Toast;
 import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.Constants;
 import com.alkaid.ojpl.common.DownLoader;
-import com.alkaid.ojpl.common.Global;
 import com.alkaid.ojpl.common.IOUtil;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.common.NetWorkUtil;
@@ -59,7 +58,6 @@ public class BookShelf extends BaseActivity{
 	private Map<Integer, DownLoader> downloaders;
 	public static String SUBSTRING_WORD = "=";
 	boolean isExit = false;
-	private Global global;
 	private PointsManager pointsManager;
 	private Map<Integer, Integer> downloadStates;
 	
@@ -93,7 +91,6 @@ public class BookShelf extends BaseActivity{
 	private class InitTask extends AsyncTask<Void, Integer, Integer>{
 		@Override
 		protected Integer doInBackground(Void... params) {
-			global=Global.getGlobal(context);
 			//初始化bookItem
 			BookItemOperator bio = new BookItemOperator();
 			bookItems = bio.getAllBookItems(BookShelf.this);

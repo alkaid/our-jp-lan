@@ -37,8 +37,28 @@ public class Global extends Application{
 	
 	/** 课文索引 */
 //	public int lessonId=1;
+	/**
+	 * 获得全局单例  若没有初始化过Global则默认会初始化
+	 * @param context
+	 * @return
+	 */
 	public static Global getGlobal(Context context){
-		return (Global)context.getApplicationContext();
+		Global global=(Global)context.getApplicationContext();
+		if(global.dm==null)
+			initApp((Activity) context);
+		return global;
+	}
+	/**
+	 * 获得全局单例  根据needInitApp判断在没有初始化过Global的情况下是否要初始化
+	 * @param context
+	 * @param needInitApp 是否需要初始化Global
+	 * @return
+	 */
+	public static Global getGlobal(Context context,boolean needInitApp){
+		Global global=(Global)context.getApplicationContext();
+		if(needInitApp&&global.dm==null)
+			initApp((Activity) context);
+		return global;
 	}
 
 	public Lesson getLessonTemplate() {

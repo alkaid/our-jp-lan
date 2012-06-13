@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.Constants;
-import com.alkaid.ojpl.common.Global;
+import com.alkaid.ojpl.data.BookItemOperator;
 import com.alkaid.ojpl.model.BookItem;
 import com.alkaid.ojpl.model.LessonItem;
 import com.alkaid.ojpl.model.Setting;
@@ -34,15 +34,26 @@ public class LessonList extends BaseActivity {
 	
 //	private String bookId;
 	private BookItem bookItem;
-	private Global global;
 //	private ArrayList<String> lessonTitles=new ArrayList<String>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lesson_list);
-		global=Global.getGlobal(context);
 		bookItem = (BookItem) global.getData(Constants.bundleKey.bookItem);
+		if(null==bookItem){
+			String bookItemId=savedInstanceState.getString(Constants.bundleKey.bookItemId);
+			bookItem=new BookItemOperator().getBookItemById(bookItemId, this);
+			initView();
+		}else{
+			initView();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void initView() {
 		ListView lessonList = (ListView) this.findViewById(R.id.lesson_section_id);
 		LessonsAdapter lAdapter = new LessonsAdapter(); 
 		lessonList.setAdapter(lAdapter);
@@ -52,11 +63,11 @@ public class LessonList extends BaseActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent=new Intent(context, LessonContents.class);
-//				intent.putExtra(Constants.bundleKey.bookItem, bookItem);
-				Global.getGlobal(context).putData(Constants.bundleKey.bookItem,bookItem);
+	//				intent.putExtra(Constants.bundleKey.bookItem, bookItem);
+				global.putData(Constants.bundleKey.bookItem,bookItem);
 				intent.putExtra(Constants.bundleKey.lessonId, bookItem.getLessonItems().get(position).getId());
-//				bundle.putStringArrayList(Constants.bundleKey.lessonTitle, lessonTitles);
-//				dataTranslate(bundle,LessonContents.class);
+	//				bundle.putStringArrayList(Constants.bundleKey.lessonTitle, lessonTitles);
+	//				dataTranslate(bundle,LessonContents.class);
 				startActivity(intent);
 			}
 		});
@@ -67,6 +78,12 @@ public class LessonList extends BaseActivity {
 				finish();
 			}
 		});
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putString(Constants.bundleKey.bookItemId, bookItem.getId());
+		super.onSaveInstanceState(outState);
 	}
 	
 	@Override

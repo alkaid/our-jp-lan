@@ -33,11 +33,11 @@ import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.AlkaidException;
 import com.alkaid.ojpl.common.AnimationLoader;
 import com.alkaid.ojpl.common.Constants;
-import com.alkaid.ojpl.common.Global;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.common.SpannableStringUtil;
 import com.alkaid.ojpl.common.ViewUtil;
 import com.alkaid.ojpl.data.ArticleDao;
+import com.alkaid.ojpl.data.BookItemOperator;
 import com.alkaid.ojpl.data.LessonDao;
 import com.alkaid.ojpl.model.Article;
 import com.alkaid.ojpl.model.ArticleType;
@@ -51,7 +51,6 @@ import com.alkaid.ojpl.view.ui.WorkSpace;
 
 public class LessonContents extends BaseActivity {
 	//全局、content、数据实体、进度框
-	private Global global;
 	private BookItem bookItem;
 	private Lesson lesson;
 	private int lessonId=1;
@@ -123,9 +122,17 @@ public class LessonContents extends BaseActivity {
 		this.context = this;
 		//音量键改为默认调整媒体音量
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
-		this.global = Global.getGlobal(context);
-		lessonId=Integer.parseInt(getIntent().getStringExtra(Constants.bundleKey.lessonId));
+		String strLessonId=getIntent().getStringExtra(Constants.bundleKey.lessonId);
+		if(null==strLessonId){
+			strLessonId=savedInstanceState.getString(Constants.bundleKey.lessonId);
+		}else{
+			lessonId=Integer.parseInt(strLessonId);
+		}
 		bookItem=(BookItem) global.getData(Constants.bundleKey.bookItem);
+		if(null==bookItem){
+			String bookItemId=savedInstanceState.getString(Constants.bundleKey.bookItemId);
+			bookItem=new BookItemOperator().getBookItemById(bookItemId, this);
+		}
 		//初始化导航栏按钮数量也是workspace屏幕数量
 		this.tabNumber = global.getLessonTemplate().getArticles().size();
 		this.currentTimeJ = new String[tabNumber];
@@ -147,6 +154,13 @@ public class LessonContents extends BaseActivity {
 		initAnimation();
 		//加载数据
 		new GetLessonTask().execute();
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putString(Constants.bundleKey.bookItemId, bookItem.getId());
+		outState.putString(Constants.bundleKey.lessonId, lessonId+"");
+		super.onSaveInstanceState(outState);
 	}
 	
 	/** findViewById */

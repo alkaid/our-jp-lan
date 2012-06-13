@@ -56,6 +56,8 @@ public class Constants {
 		public static final String lessonTitle="lessonTitle";
 		/** 异常信息 */
 		public static final String errorMsg="errorMsg";
+		/** 书本id **/
+		public static final String bookItemId="bookItemId";
 	}
 	/** message.what */
 	public static class msgWhat{
