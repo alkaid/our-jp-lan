@@ -32,7 +32,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alkaid.ojpl.R;
-import com.alkaid.ojpl.common.Global;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.data.FiftyMapDao;
 import com.alkaid.ojpl.model.Setting;
@@ -41,7 +40,6 @@ import com.alkaid.ojpl.view.ui.WorkSpace;
 
 public class FiftyMap extends BaseActivity {
 	//全局、content、数据实体、进度框
-	private Global global;
 	private Context context;
 	private ProgressDialog progressDialog;
 	
@@ -88,7 +86,6 @@ public class FiftyMap extends BaseActivity {
 		this.context = this;
 		//音量键改为默认调整媒体音量
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
-		this.global = Global.getGlobal(context);
 		//初始化导航栏按钮数量也是workspace屏幕数量
 		tabs.add("清音");
 		tabs.add("浊音·半浊音");

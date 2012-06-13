@@ -26,6 +26,8 @@ public class Welcome extends BaseActivity{
 	final int SHOWTIME=1500;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//默认不初始化app 放在线程中执行
+		needInitApp=false;
 		super.onCreate(savedInstanceState);
 		//友盟错误报告
 		MobclickAgent.onError(this);

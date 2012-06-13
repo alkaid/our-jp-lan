@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.Constants;
+import com.alkaid.ojpl.common.Global;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.common.SNSShare;
 import com.alkaid.ojpl.view.ad.PointsManager;
@@ -24,10 +25,14 @@ import com.umeng.fb.UMFeedbackService;
  */
 public abstract class BaseActivity extends Activity {
 	protected Context context;
+	protected Global global;
+	/** 是否需要初始化global 是欢迎界面专用参数，因为欢迎界面的初始化放在线程里*/
+	protected boolean needInitApp=true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context=this;
+		global=Global.getGlobal(context,needInitApp);
 	}
 	
 	@Override
