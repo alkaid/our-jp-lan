@@ -8,6 +8,7 @@ import cn.domob.android.ads.DomobAdListener;
 import cn.domob.android.ads.DomobAdView;
 
 import com.alkaid.ojpl.R;
+import com.alkaid.ojpl.common.LicenseManager;
 import com.waps.AppConnect;
 
 /**
@@ -28,7 +29,9 @@ public class BannerAdManager {
 	public static final String PUBLISHER_ID="56OJzwHIuMwLtc3L0d";
 	public BannerAdManager(Context context) {
 		this.context=context;
-		showBanner=!"false".equals(AppConnect.getInstance(context).getConfig(KEY_SHOW_BANNER));
+		boolean isFree=LicenseManager.authLicense(context);
+		if(!isFree)
+			showBanner=!"false".equals(AppConnect.getInstance(context).getConfig(KEY_SHOW_BANNER));
 	}
 	
 	public void creatAd(){

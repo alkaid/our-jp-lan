@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 
 public class SystemUtil {
 
@@ -29,6 +30,10 @@ public class SystemUtil {
 	public static String getLocalMacAddress(Context context) {
 		return ((WifiManager) context.getSystemService("wifi"))
 				.getConnectionInfo().getMacAddress();
+	}
+	/** 获得手机imei地址*/
+	public static String getImei(Context context){
+		return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 	}
 	/**
 	 * Reports the type of network (currently mobile or Wi-Fi) to which the info in this object pertains.

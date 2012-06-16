@@ -81,6 +81,8 @@ public class Constants {
 			public static final String size_suffix="_size";
 			/** 是否需要积分 key的后缀*/
 			public static final String needPoints_suffix="_needPoints";
+			/** key 免费证书*/
+			public static final String license01="license01";
 		}
 	}
 }

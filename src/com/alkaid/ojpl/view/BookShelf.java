@@ -29,6 +29,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,6 +44,7 @@ import com.alkaid.ojpl.common.DownLoader;
 import com.alkaid.ojpl.common.IOUtil;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.common.NetWorkUtil;
+import com.alkaid.ojpl.common.SNSShare;
 import com.alkaid.ojpl.common.UnZipUtil;
 import com.alkaid.ojpl.data.BookItemOperator;
 import com.alkaid.ojpl.model.BookItem;
@@ -50,6 +52,7 @@ import com.alkaid.ojpl.view.ad.BannerAdManager;
 import com.alkaid.ojpl.view.ad.PointsManager;
 import com.alkaid.ojpl.view.ui.CustAlertDialog;
 import com.alkaid.ojpl.view.ui.OperateDialog;
+import com.umeng.fb.UMFeedbackService;
 
 public class BookShelf extends BaseActivity{
 	
@@ -68,6 +71,21 @@ public class BookShelf extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bookshelf);
+		Button btnShare=(Button) findViewById(R.id.btnShare);
+		Button btnFeedback=(Button) findViewById(R.id.btnFeedback);
+		btnShare.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				InputStream is = context.getResources().openRawResource(R.drawable.share_pic_s);
+	        	SNSShare.share(context, is);
+			}
+		});
+		btnFeedback.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				UMFeedbackService.openUmengFeedbackSDK(context);
+			}
+		});
 		//加载数据
 		new InitTask().execute();
 	}
