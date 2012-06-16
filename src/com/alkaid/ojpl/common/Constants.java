@@ -69,7 +69,9 @@ public class Constants {
 		/** 初始积分数量 */
 		public static final int total=200;
 		/** 每次要消耗的积分数量 */
-		public static final int perAction=20;
+		public static final int spendPerAction=20;
+		/** 每次分享奖励多少积分*/
+		public static final int awardPerShare=10;
 	}
 	/** sharedPreference 相关key */
 	public static class sharedPreference{
@@ -83,6 +85,14 @@ public class Constants {
 			public static final String needPoints_suffix="_needPoints";
 			/** key 免费证书*/
 			public static final String license01="license01";
+		}
+		/** sns分享 是否分享过，值为分享日期*/
+		public static class snsShare{
+			/** sharedPreference名称 */
+			public static final String name="snsShare";
+			public static final String sinaDate="sinaDate";
+			public static final String qqweiboDate="qqweiboDate";
+			public static final String renrenDate="renrenDate";
 		}
 	}
 }

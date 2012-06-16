@@ -76,8 +76,16 @@ public class BookShelf extends BaseActivity{
 		btnShare.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//umeng分享组件分享
 				InputStream is = context.getResources().openRawResource(R.drawable.share_pic_s);
 	        	SNSShare.share(context, is);
+	        	//客户端分享
+//				Intent intent = new Intent(Intent.ACTION_SEND);
+//				intent.setType("text/plain");
+//				intent.putExtra(Intent.EXTRA_SUBJECT, "分享到");
+//				intent.putExtra(Intent.EXTRA_TEXT,
+//						"I would like to share this with you...");
+//				startActivityForResult(Intent.createChooser(intent, getTitle()),1);
 			}
 		});
 		btnFeedback.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +98,18 @@ public class BookShelf extends BaseActivity{
 		new InitTask().execute();
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case 1:
+			
+			break;
+
+		default:
+			break;
+		}
+	}
 	
 	@Override
 	protected void onResume() {
@@ -708,7 +728,7 @@ public class BookShelf extends BaseActivity{
 			if (!isPointsEnough) {
 				return false;
 			} else {
-				pointsManager.spendPoints(Constants.points.perAction);
+				pointsManager.spendPoints(Constants.points.spendPerAction);
 			}
 			sharedPreferences.edit().putBoolean(key, false)
 					.commit();

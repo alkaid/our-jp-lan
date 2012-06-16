@@ -32,6 +32,10 @@ public class PointsManager {
 	private static final String KEY_POINTS_ENABLE="pointsEnable";
 	/** 是否拥有免费证书*/
 	private boolean authLicense=false;
+	public boolean isAuthLicense() {
+		return authLicense;
+	}
+
 	public PointsManager(Context context){
 		this.context=context;
 		authLicense=LicenseManager.authLicense(context);
@@ -79,9 +83,9 @@ public class PointsManager {
 			break;
 		case GETPOINTS_SUCCESS:
 			int points=updatePoints.getTotalPoints();
-			tip="每部分学习资料阅读需要"+Constants.points.perAction+"积分,您当前积分为"+points+",积分不足,点击获取积分按钮免费获得积分";
+			tip="每部分学习资料阅读需要"+Constants.points.spendPerAction+"积分,您当前积分为"+points+",积分不足,点击获取积分按钮免费获得积分";
 			
-			if(points>Constants.points.perAction){
+			if(points>Constants.points.spendPerAction){
 				return true;
 			}
 			new CustAlertDialog.Builder(context)
@@ -179,7 +183,10 @@ public class PointsManager {
 	}
 	/** 奖励积分 */
 	public void awardPoints(int amount){
+		if(authLicense)
+			return;
 		AppConnect.getInstance(context).awardPoints(amount, updatePoints);
+		Toast.makeText(context, "获得积分："+amount, Toast.LENGTH_LONG).show();
 	}
 	/** 展示积分墙 */
 	public void showOffers(){
