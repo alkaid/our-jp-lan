@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 
 import com.alkaid.ojpl.common.Constants;
+import com.alkaid.ojpl.common.LicenseManager;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.view.ui.CustAlertDialog;
 import com.waps.AppConnect;
@@ -29,8 +30,12 @@ public class PointsManager {
 	/** 是否开启积分系统 由服务器获得 由于是下载需要积分，则可以不考虑没联网的状态*/
 	private boolean pointsEnable=false;
 	private static final String KEY_POINTS_ENABLE="pointsEnable";
+	/** 是否拥有免费证书*/
+	private boolean authLicense=false;
 	public PointsManager(Context context){
 		this.context=context;
+		authLicense=LicenseManager.authLicense(context);
+		if(authLicense) return;
 		init(context);
 		updatePoints=new UpdatePoints(context);
 		updatePoints.getAsyncPoints();
@@ -50,6 +55,8 @@ public class PointsManager {
 	 * @return 积分是否充足
 	 */
 	public boolean isPointsEnough(){
+		//若有免费证书 
+		if(authLicense) return true;
 		int status=getGetpointsStatus();
 		//这个拿到的是初始化时拿到的缓存值 不是实时的
 //		pointsEnable="true".equals(AppConnect.getInstance(context).getConfig(KEY_POINTS_ENABLE));
