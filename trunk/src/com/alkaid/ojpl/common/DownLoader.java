@@ -87,14 +87,16 @@ public class DownLoader {
 			conn.setConnectTimeout(5*1000);
 			conn.setRequestProperty("Range","bytes="+curSize+"-");
 			is = conn.getInputStream();
-			if(curSize<=0){
+			if(curSize==0||fileSize==0){
 				fileSize =conn.getContentLength();
+				fileSize+=curSize;
 				onDownloadBegin(fileSize);
 			}
 			LogUtil.i("connected...........");
 		} catch (IOException e) {
 			Message msg=handle.obtainMessage(Constants.msgWhat.error);
-			msg.getData().putString(Constants.bundleKey.errorMsg, "网络连接有异常");
+			msg.getData().putString(Constants.bundleKey.errorMsg, "网络连接有异常,请重试");
+			handle.sendMessage(msg);
 			LogUtil.e(e);
 			conn.disconnect();
 		}
@@ -225,7 +227,7 @@ public class DownLoader {
 	
 	/**用于获得下载进度的百分比*/
 	public int getPercent(){
-		int percent = (int) (100*(curSize)/fileSize);
+		int percent = fileSize==0? 0 : (int) (100*(curSize)/fileSize);
 		return percent;
 	}
 	

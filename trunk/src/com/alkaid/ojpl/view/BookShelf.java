@@ -208,6 +208,7 @@ public class BookShelf extends BaseActivity{
 					status=DownLoader.DOWN_PAUSE;
 				}else if(localFileLength == fileSize&&localFileLength!=0){
 	//				status=DownLoader.ZIP_BEGIN;	//TODO 考虑未解压情况处理
+					status=DownLoader.DOWN_PAUSE;
 				}else if(localFileLength==0){
 					String zipDir = Constants.PATH_RES+"/"+bookItem.getDownloadAdd().substring(bookItem.getDownloadAdd().lastIndexOf(SUBSTRING_WORD)+1,bookItem.getDownloadAdd().lastIndexOf("."));
 					File f = new File(zipDir);
@@ -372,7 +373,7 @@ public class BookShelf extends BaseActivity{
 								downAdd.lastIndexOf("."));
 				File f = new File(zipDir);
 				// 书本下载完成点击所做的操作
-				if (f.exists()) {
+				if (f.exists()&&downloader.getLocalFileLength()==0) {
 					Intent intent=new Intent(context, LessonList.class);
 //					intent.putExtra(Constants.bundleKey.bookItem, bookItem);
 					global.putData(Constants.bundleKey.bookItem,bookItem);
@@ -380,16 +381,17 @@ public class BookShelf extends BaseActivity{
 					return;
 				}
 				//开始下载或暂停
-					if(!downloader.isStop()){
-						// 做暂停操作
-						downloader.pause();
-						return;
-					}
-					// 做下载操作
-					if (downloader.isStop()) {
-						downloadBook(downloader, bookItem);
-					}
+				if(!downloader.isStop()){
+					// 做暂停操作
+					downloader.pause();
+					return;
 				}
+				// 做下载操作
+				if (downloader.isStop()) {
+					downloadBook(downloader, bookItem);
+					return;
+				}
+			}
 		}
 		/** 长按菜单*/
 		private class BookOnLongClickListenner implements View.OnLongClickListener{
