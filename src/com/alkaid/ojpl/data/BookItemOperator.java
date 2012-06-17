@@ -59,9 +59,18 @@ public class BookItemOperator{
 	
 	//根据id获得某本书的实例
 	public BookItem getBookItemById(String id,Activity a){
-		int index = Integer.parseInt(id.substring(id.length()-1));
-		bookItem = getAllBookItems(a).get(index);
-		return bookItem;
+		//int index = Integer.parseInt(id.substring(id.length()-1));
+		int i = 0;
+		ArrayList<BookItem> bookItems = (ArrayList<BookItem>) getAllBookItems(a);
+		while(i<bookItems.size()){
+			if(id.equals(bookItems.get(i).getId())){
+				bookItem = getAllBookItems(a).get(i);
+				return bookItem;
+			}
+			i++;
+		}
+		
+		return null;
 	}
 		
 	

@@ -34,6 +34,8 @@ public class Constants {
 	public static final String EXITREMIND="再按一次返回键退出程序!!";
 	/**五十音图书的ID*/
 	public static final String FIFTYMAPID="book0";
+	/**说明的ID*/
+	public static final String INTRODUCTION="introduction";
 	/**关于的内容*/
 	public static final String ABOUT = "版权声明：\n"+
 		    "1.本应用是免费应用，应用仅供个人学习使用；\n"+
