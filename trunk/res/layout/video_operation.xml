@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="30dp"
+    android:orientation="vertical" android:gravity="center_vertical">
+	<TextView android:id="@+id/tvVideoInfo"
+	    android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
+	    android:lines="3"
+	    android:textColor="@color/green_classic"
+	    android:text="视频未下载，您可以选择在线观看或下载完成后播放"/>
+	<LinearLayout android:orientation="horizontal" android:gravity="center_horizontal" 
+	    android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
+	    android:layout_gravity="center_horizontal">
+	    <Button android:id="@+id/btnVideoPlay" android:text="在线播放" 
+	        android:textSize="18sp"
+	        android:background="@drawable/sel_dialog_button"
+	        android:paddingTop="3dp" android:paddingBottom="3dp" 
+	        android:paddingLeft="10dp" android:paddingRight="10dp"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	    <Button android:id="@+id/btnVideoDownload" android:text="下载" 
+	        android:textSize="18sp"
+	        android:paddingTop="3dp" android:paddingBottom="3dp" 
+	        android:paddingLeft="10dp" android:paddingRight="10dp"
+	        android:background="@drawable/sel_dialog_button" android:layout_marginLeft="10dp"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	    <Button android:id="@+id/btnVideoDelete" android:text="删除" 
+	        android:textSize="18sp"
+	        android:paddingTop="3dp" android:paddingBottom="3dp" 
+	        android:paddingLeft="10dp" android:paddingRight="10dp"
+	        android:background="@drawable/sel_dialog_button" android:layout_marginLeft="10dp"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+	<ProgressBar android:id="@+id/pbVideoDownload" android:progressDrawable="@drawable/seekbar_style"
+	    style="?android:attr/progressBarStyleHorizontal"
+        android:thumb="@drawable/thumb_normal" android:layout_gravity="center_horizontal"
+        android:layout_width="200dp" android:layout_height="16dp" android:max="100"
+        android:layout_marginTop="5dp" />
+</LinearLayout>

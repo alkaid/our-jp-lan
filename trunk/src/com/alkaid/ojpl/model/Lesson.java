@@ -54,6 +54,12 @@ public class Lesson extends Model{
 	private int groupNextId;
 	/** 当前分组课文的上一课的id 若是第一课则下一课为分组最后一课 */
 	private int groupPreId;
+	/** 视频路径*/
+	private String videoPath;
+	/** 视频播放地址*/
+	private String videoUri;
+	/** 视频下载地址*/
+	private String videoDownUri;
 	
 	/*public Lesson(int id) {
 		this.id=id;
@@ -91,6 +97,10 @@ public class Lesson extends Model{
 		this.groupNextId=id==groupLastId?groupFirstId:id+1;
 		this.groupPreId=id==groupFirstId?groupLastId:id-1;
 		this.titleJp=bookItem.getLessonItems().get(positionInGroup).getTitle();
+		String strLessonId=id<10?"0"+id:id+"";	//补位
+		this.videoPath=this.path+"/djdry_huihua_"+strLessonId+".mp4";
+		this.videoUri="http://coodroid.com/download/djdry/video/huihua/djdry_huihua_"+strLessonId+".mp4";
+		this.videoDownUri="http://coodroid.com/down.php?p=video-huihua&f=djdry_huihua_"+strLessonId+".mp4";
 	}
 	
 	/** 根据lessonId获得lesson所在册数*/
@@ -279,6 +289,15 @@ public class Lesson extends Model{
 	}
 	public int getVolumn() {
 		return volumn;
+	}
+	public String getVideoPath() {
+		return videoPath;
+	}
+	public String getVideoUri() {
+		return videoUri;
+	}
+	public String getVideoDownUri() {
+		return videoDownUri;
 	}
 	
 }

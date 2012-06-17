@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="4" />
+    <uses-sdk android:minSdkVersion="7" />
     <application
         android:name=".common.Global"
         android:icon="@drawable/ic_launcher"
@@ -23,6 +23,17 @@
         <activity android:name=".view.FiftyMap"/>
         <activity android:name=".view.LessonContents"/>
         <activity android:name=".view.Introduction"/>
+        <activity android:name=".view.VideoPlayerActivity" 
+                  android:configChanges="keyboardHidden|orientation">
+            <intent-filter>  
+            	<action android:name="android.intent.action.VIEW"/> 
+          		<data android:mimeType="video/*" android:scheme="http"/>
+          		<data android:mimeType="video/*" android:scheme="file"/>
+          		<data android:mimeType="audio/*" android:scheme="http"/>
+          		<data android:mimeType="audio/*" android:scheme="file"/>
+          		<category android:name="android.intent.category.DEFAULT"/> 
+            </intent-filter>
+        </activity>
         <activity android:name="com.umeng.fb.ui.SendFeedback"
     				android:windowSoftInputMode="adjustResize" />
         <!--友盟FeedBack  -->

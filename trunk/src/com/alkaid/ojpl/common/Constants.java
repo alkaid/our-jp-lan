@@ -30,6 +30,8 @@ public class Constants {
 	public static final String NETERROR="亲,你的网络不大好,请稍后再试!!";
 	/**下载出错的提示*/
 	public static final String DOWNERROR="ORZ,下载出错,正在尝试重新下载!!";
+	/**下载出错的提示*/
+	public static final String DOWNSIZEWRONG="ORZ,下载出错,请尝试重新下载";
 	/**退出应用提示*/
 	public static final String EXITREMIND="再按一次返回键退出程序!!";
 	/**五十音图书的ID*/
@@ -60,11 +62,17 @@ public class Constants {
 		public static final String errorMsg="errorMsg";
 		/** 书本id **/
 		public static final String bookItemId="bookItemId";
+		/** 视频播放地址 */
+		public static final String videoUri="videoUri";
+		/** 是否指在线视频*/
+		public static final String videoIsOnline="videoIsOnline";
 	}
 	/** message.what */
 	public static class msgWhat{
 		/** 异常消息 */
 		public static final int error=-200;
+		/** 下载状态改变*/
+		public static final int downstate_changed=2000;
 	}
 	/** 积分相关常量*/
 	public static class points{
@@ -87,6 +95,13 @@ public class Constants {
 			public static final String needPoints_suffix="_needPoints";
 			/** key 免费证书*/
 			public static final String license01="license01";
+		}
+		/** 课文配置信息 */
+		public static class lessonConfig{
+			/** sharedPreference名称 */
+			public static final String name="lessonConfig";
+			/** 视频大小 key的后缀*/
+			public static final String huihua_video_size_suffix="_huihua_video_size";
 		}
 		/** sns分享 是否分享过，值为分享日期*/
 		public static class snsShare{

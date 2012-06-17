@@ -12,8 +12,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.alkaid.ojpl.view.BookShelf;
-
 
 /**
  * @author Lelouch
@@ -26,12 +24,12 @@ public class DownLoader {
 	public static final int DOWN_LOADING=1;
 	/** 下载状态：暂停*/
 	public static final int DOWN_PAUSE=0;
-	/** 下载状态：完成*/
-	public static final int DOWN_COMPLETE=2;
+	/** 任务状态：完成(包括下载包括解压)*/
+	public static final int TASK_COMPLETE=2;
 	/** 下载状态：开始下载*/
 	public static final int DOWN_BEGIN=4;
-	/** 解压缩状态，开始解压*/
-	public static final int ZIP_BEGIN=5;
+	/** 下载状态：完成  解压缩状态，开始解压*/
+	public static final int DOWN_COMPLETE=5;
 	public int tag;
 	private boolean isStop=true;
 	private long curSize;
@@ -53,6 +51,10 @@ public class DownLoader {
 		this.path = path;
 		this.handle = handle;
 		this.context =context;
+		File localFile = getLocalFile();
+		if(null!=localFile){
+			curSize=localFile.length();
+		}
 	}
 	
 	/**文件下载到本地 */
@@ -138,7 +140,7 @@ public class DownLoader {
 		if(getPercent()==100){					
 			if(!handle.equals(null)){
 				isStop = true;
-				sendMsg(ZIP_BEGIN, handle);
+				sendMsg(DOWN_COMPLETE, handle);
 //LogUtil.e("完成"+curSize+"-"+fileSize);
 			}
 		}		
@@ -168,6 +170,8 @@ public class DownLoader {
 	}	
 	/** 获取本地文件*/
 	public File getLocalFile(){
+		if(null==path)
+			return null;
 		File localFile = new File(path);
 		if(localFile.exists()){
 			return localFile;
@@ -210,7 +214,7 @@ public class DownLoader {
 	
 	/** 下载时所响应的操作消息*/
 	public void sendMsg(int downState,Handler handle){
-		Message msg = handle.obtainMessage(BookShelf.msg_what_updateBookView);		
+		Message msg = handle.obtainMessage(Constants.msgWhat.downstate_changed);		
 		msg.arg1=this.tag;
 		msg.arg2=downState;
 		handle.sendMessage(msg);
