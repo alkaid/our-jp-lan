@@ -157,8 +157,8 @@ public class BookShelf extends BaseActivity{
 		DownLoader d=null;
 		for(int i=0;i<bookItems.size();i++){
 			final BookItem bookItem=bookItems.get(i);
-			//判断书的类型，五十音图的书要单独处理
-			if(bookItem.getId().equals(Constants.FIFTYMAPID)){
+			//判断书的类型，说明的书要单独处理,五十音图的书要单独处理
+			if(bookItem.getId().equals(Constants.FIFTYMAPID)||bookItem.getId().equals(Constants.INTRODUCTION)){
 				//五十音加载时的操作
 				d = new DownLoader(i,null,null,handle,context);
 			}else{
@@ -189,8 +189,8 @@ public class BookShelf extends BaseActivity{
 		downloadStates=new HashMap<Integer, Integer>();
 		for(int i=0;i<bookItems.size();i++){
 			final BookItem bookItem=bookItems.get(i);
-			//判断书的类型，五十音图的书要单独处理
-			if(bookItem.getId().equals(Constants.FIFTYMAPID)){
+			//判断书的类型，五十音图的书要单独处理，说明的书要单独处理
+			if(bookItem.getId().equals(Constants.FIFTYMAPID)||bookItem.getId().equals(Constants.INTRODUCTION)){
 				downloadStates.put(i, DownLoader.TASK_COMPLETE);
 			}else{
 				//初始化下载图标的状态
@@ -359,6 +359,14 @@ public class BookShelf extends BaseActivity{
 				if (bookItem.getId().equals(Constants.FIFTYMAPID)) {
 					Intent intent = new Intent(context,
 							FiftyMap.class);
+					startActivity(intent);
+					return;
+				}
+				//说明不用下载 直接进入
+				if (bookItem.getId().equals(Constants.INTRODUCTION)) {
+					Intent intent=new Intent(context, LessonList.class);
+//					intent.putExtra(Constants.bundleKey.bookItem, bookItem);
+					global.putData(Constants.bundleKey.bookItem,bookItem);
 					startActivity(intent);
 					return;
 				}
