@@ -15,6 +15,24 @@
 			</Lesson>		
 		</Lessons>
 	</BookItem> -->
+	<BookItem id="introduction">
+		<Name>introduction</Name>
+		<ImageAdd>img/introduction.png</ImageAdd>
+		<Lessons>
+			<Lesson id="xszengyan">
+				<title>小生赠言</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="xxxqianchong">
+				<title>学习向前冲</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="rrweiwo">
+				<title>人人为我，我为人人</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>>
 	
 	<BookItem id="book0">
 		<Name>fiftynMap</Name>

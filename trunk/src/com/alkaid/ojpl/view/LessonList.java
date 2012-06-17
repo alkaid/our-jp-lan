@@ -62,10 +62,18 @@ public class LessonList extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent=new Intent(context, LessonContents.class);
-	//				intent.putExtra(Constants.bundleKey.bookItem, bookItem);
-				global.putData(Constants.bundleKey.bookItem,bookItem);
-				intent.putExtra(Constants.bundleKey.lessonId, bookItem.getLessonItems().get(position).getId());
+				//当课本为说明的书本时做单独处理
+				Intent intent = null;
+				if(bookItem.getId().equals(Constants.INTRODUCTION)){
+					intent=new Intent(context, Introduction.class);
+					global.putData(Constants.bundleKey.bookItem,bookItem);
+					intent.putExtra(Constants.bundleKey.lessonId, bookItem.getLessonItems().get(position).getId());
+				}else{
+					intent=new Intent(context, LessonContents.class);
+//				intent.putExtra(Constants.bundleKey.bookItem, bookItem);
+					global.putData(Constants.bundleKey.bookItem,bookItem);
+					intent.putExtra(Constants.bundleKey.lessonId, bookItem.getLessonItems().get(position).getId());
+				}
 	//				bundle.putStringArrayList(Constants.bundleKey.lessonTitle, lessonTitles);
 	//				dataTranslate(bundle,LessonContents.class);
 				startActivity(intent);
