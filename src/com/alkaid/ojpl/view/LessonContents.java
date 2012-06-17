@@ -6,16 +6,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -23,6 +28,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -33,6 +39,7 @@ import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.AlkaidException;
 import com.alkaid.ojpl.common.AnimationLoader;
 import com.alkaid.ojpl.common.Constants;
+import com.alkaid.ojpl.common.DownLoader;
 import com.alkaid.ojpl.common.LogUtil;
 import com.alkaid.ojpl.common.SpannableStringUtil;
 import com.alkaid.ojpl.common.ViewUtil;
@@ -75,7 +82,8 @@ public class LessonContents extends BaseActivity {
 	private TranslateAnimation moveAnim;*/
 	
 	//数据展示区域
-	private int tabNumber;
+	private int tabNum;
+	private int articlesNum;
 	private int previousView;
 	private int currentView = 0;
 	private LinearLayout llWorkSpace;
@@ -102,6 +110,18 @@ public class LessonContents extends BaseActivity {
 	private int[] seekPosition;
 	private String[] currentTimeJ;
 	private String[] finalTimeJ;
+	private String nonMp3Url;	//当aticle没有mp3url时使用这个url
+	private String nonMp3TypeZh;//当aticle没有mp3url时使用这个typeZh
+	
+	//视频相关
+	private TextView tvVideoInfo;
+	private Button btnVideoDelete;
+	private Button btnVideoDownload;
+	private Button btnVideoPlay;
+	private ProgressBar pbVideoDownload;
+	private DownLoader downLoader;
+	private int videoDownStatus;//视频下载状态
+	private View videoOpView;
 	
 	// private TextView exercise;
 	// private LyricAdapter[] lrcAdapters;
@@ -133,13 +153,14 @@ public class LessonContents extends BaseActivity {
 			String bookItemId=savedInstanceState.getString(Constants.bundleKey.bookItemId);
 			bookItem=new BookItemOperator().getBookItemById(bookItemId, this);
 		}
-		//初始化导航栏按钮数量也是workspace屏幕数量
-		this.tabNumber = global.getLessonTemplate().getArticles().size();
-		this.currentTimeJ = new String[tabNumber];
+		this.articlesNum = global.getLessonTemplate().getArticles().size();
+		//初始化导航栏按钮数量也是workspace屏幕数量  +1是视频功能
+		tabNum=articlesNum+1;
+		this.currentTimeJ = new String[articlesNum];
 		this.isPlaying = false;
-		this.seekPosition = new int[tabNumber];
-		this.finalTimeJ = new String[tabNumber];
-		this.tvArticles = new TextView[tabNumber];
+		this.seekPosition = new int[articlesNum];
+		this.finalTimeJ = new String[articlesNum];
+		this.tvArticles = new TextView[articlesNum];
 		// this.lyricLists = new ListView[tabNumber];
 		// this.lrcAdapters = new LyricAdapter[tabNumber];
 		// this.index = 1;
@@ -194,40 +215,60 @@ public class LessonContents extends BaseActivity {
 					public void onChanged(int preScreen, int currentScreen) {
 						//导航栏设置选中
 						navgationLayout.setSelected(currentScreen);
-						/*moveAnim = new TranslateAnimation(global.width
-								/ tabNumber * preScreen, global.width
-								/ tabNumber * currentScreen, 0, 0);
-						moveAnim.setAnimationListener(new MyAnimListener());
-						moveAnim.setFillAfter(true);
-						moveAnim.setDuration(250L);
-						move.startAnimation(moveAnim);*/
 						LessonContents.this.previousView = preScreen;
 						LessonContents.this.currentView = currentScreen;
-
+						//记录前一屏音频面板状态
+						if(preScreen<=articlesNum-1){
+							seekPosition[preScreen] = sbAudio.getProgress();
+							currentTimeJ[preScreen] = tvCurrentTime.getText().toString();
+							finalTimeJ[preScreen] = tvTotalTime.getText().toString();
+							Article preArticle=lesson.getArticles().get(preScreen);
+							if(!TextUtils.isEmpty(preArticle.getMp3Url())){
+								currentMp3=preScreen;
+							}
+						}
+						//若当前屏幕索引超出文章长度，隐藏Mps controller
+						if(currentScreen>articlesNum-1){
+							rlAudio.setVisibility(View.GONE);
+							if(null!=player)
+								player.stopmusic();
+							isPlaying = false;
+							player = null;
+							return;
+						}
+						
+						
+						rlAudio.setVisibility(View.VISIBLE);
 						//更新mp3栏目信息
 						Article article = lesson.getArticles().get(
 								currentScreen);
-						if (TextUtils.isEmpty(article.getMp3Url())
-								|| TextUtils.isEmpty(lesson.getArticles()
-										.get(preScreen).getMp3Url()))
+						//TODO 这里有个小bug 直接跳到语法的话由于player没有初始化无法播放
+						if (TextUtils.isEmpty(article.getMp3Url())){
+							if(player==null){
+								Article preArticle=lesson.getArticles().get(currentMp3);
+								tvCurrentType.setText(preArticle.getType().getZh());
+								isPlaying = false;
+								btnPlay.setBackgroundResource(R.drawable.sel_play);
+								player = new Mp3Player();
+								player.setDataSource(preArticle.getMp3Url());
+								player.mediaplayer.seekTo(seekPosition[currentMp3]
+										* player.mediaplayer.getDuration()
+										/ sbAudio.getMax());
+							}
 							return;
+						}
+						if(currentMp3==currentView&&player!=null){
+							return;
+						}
 						currentMp3=currentView;
 						tvCurrentType.setText(article.getType().getZh());
-
 						btnNext.setVisibility(View.GONE);
 						btnPrevious.setVisibility(View.GONE);
 						btnReplay.setVisibility(View.GONE);
 						llSeekbar.setVisibility(View.VISIBLE);
-						btnPlay.setBackgroundDrawable(ViewUtil
-								.getBtnStateListDrawable(context,
-										R.drawable.play, R.drawable.play2));
-						seekPosition[preScreen] = sbAudio.getProgress();
-						currentTimeJ[preScreen] = tvCurrentTime.getText()
-								.toString();
-						finalTimeJ[preScreen] = tvTotalTime.getText()
-								.toString();
-
-						player.stopmusic();
+						btnPlay.setBackgroundResource(R.drawable.sel_play);
+						if(null!=player)
+							player.stopmusic();
 						isPlaying = false;
 						player = null;
 						player = new Mp3Player();
@@ -243,13 +284,15 @@ public class LessonContents extends BaseActivity {
 				});
 		//为workspace的每个View加载数据
 		// TODO 只考虑双语和UBBText情况先
-		for (int i = 0; i < tabNumber; i++) {
+		for (int i = 0; i < articlesNum; i++) {
 			Article article = global.getLessonTemplate().getArticles().get(i);
 			if (article.getType() == ArticleType.shuangyu
 					|| article.getType().isUBBText())
 			tvArticles[i] = new TextView(context);
 			initWorkspaceScreenView(workspace, tvArticles[i]);
 		}
+		//初始化视频页面
+		initVideoForWorkspaceScreen(workspace);
 		workspace.setToScreen(currentView);
 		//将workspace动态添加到父视图
 		llWorkSpace.addView(workspace, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
@@ -298,7 +341,7 @@ public class LessonContents extends BaseActivity {
 		player.setDataSource(lesson.getArticles().get(currentMp3).getMp3Url());
 		tvTitle.setText(lesson.getTitleJp());
 		// TODO 只考虑双语情况和UBBText先
-		for (int i = 0; i < tabNumber; i++) {
+		for (int i = 0; i < articlesNum; i++) {
 			Article article = lesson.getArticles().get(i);
 			decorateArticle(tvArticles[i], article);
 //			tvArticles[i].setText("ooxxsdfsdfsdfsdfswerfsdfsdfafsdfsafsdafasdfsdfsdfsdfsdooxxwekrjlsdfsooxx\nwer");
@@ -346,6 +389,8 @@ public class LessonContents extends BaseActivity {
 		for(Article a:global.getLessonTemplate().getArticles()){
 			data.add(a.getType().getZh());
 		}
+		//添加视频页签
+		data.add("视频");
 		navgationLayout=new NavgationLayout(context, data);
 		navgationLayout.setOnClickNavBtnListenner(new NavgationLayout.OnClickNavBtnListenner() {
 			@Override
@@ -359,7 +404,7 @@ public class LessonContents extends BaseActivity {
 	
 	/** 初始化音乐播放器及其mp3信息 */
 	private void initController() {
-		for (int i = 0; i < this.tabNumber; i++) {
+		for (int i = 0; i < this.articlesNum; i++) {
 			this.currentTimeJ[i] = "00:00";
 		}
 		tvCurrentTime.setText("00:00");
@@ -514,6 +559,8 @@ public class LessonContents extends BaseActivity {
 	protected void onDestroy() {
 		if(null!=player)
 			player.stopmusic();
+		if(null!=downLoader)
+			downLoader.pause();
 		super.onDestroy();
 	}
 
@@ -541,7 +588,170 @@ public class LessonContents extends BaseActivity {
 		workspace.addView(scrollView);
 	}
 
+	/**
+	 * 初始化视频页签
+	 * @param workSpace
+	 */
+	private void initVideoForWorkspaceScreen(WorkSpace workSpace){
+		LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		videoOpView=inflater.inflate(R.layout.video_operation, null);
+		tvVideoInfo=(TextView) videoOpView.findViewById(R.id.tvVideoInfo);
+		btnVideoDelete=(Button) videoOpView.findViewById(R.id.btnVideoDelete);
+		btnVideoDownload=(Button) videoOpView.findViewById(R.id.btnVideoDownload);
+		btnVideoPlay=(Button) videoOpView.findViewById(R.id.btnVideoPlay);
+		pbVideoDownload=(ProgressBar) videoOpView.findViewById(R.id.pbVideoDownload);
+		setTextProperty(tvVideoInfo, setting);
+		downLoader=new DownLoader(1, lesson.getVideoDownUri(), lesson.getVideoPath(), handler, context){
+			@Override
+			protected void onDownloadBegin(long filesize) {
+				super.onDownloadBegin(filesize);
+				if(filesize>0){
+					SharedPreferences sharedPreferences = getSharedPreferences(Constants.sharedPreference.lessonConfig.name, Context.MODE_PRIVATE);
+					String key=lesson.getId()+Constants.sharedPreference.lessonConfig.huihua_video_size_suffix;
+					sharedPreferences.edit().putLong(key, filesize).commit();
+				}
+			}
+		};
+		//初始化下载状态
+		SharedPreferences sharedPreferences = getSharedPreferences(Constants.sharedPreference.lessonConfig.name, Context.MODE_PRIVATE);
+		//用于判断本地文件和文件长度是否相等传递初始化状态
+		String key=lessonId+Constants.sharedPreference.lessonConfig.huihua_video_size_suffix;
+		downLoader.setFileSize(sharedPreferences.getLong(key, 0));
+		long fileSize = downLoader.getFileSize();
+		long localFileLength = downLoader.getLocalFileLength();
+		videoDownStatus=DownLoader.DOWN_NONE;
+		if(localFileLength<fileSize&&localFileLength!=0){
+			videoDownStatus=DownLoader.DOWN_PAUSE;
+		}else if(localFileLength == fileSize&&localFileLength!=0){
+			videoDownStatus=DownLoader.DOWN_COMPLETE;
+		}
+		//初始化视频按钮组
+		btnVideoPlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent=new Intent(context,VideoPlayerActivity.class);
+				//下载完成播放本地
+				if(videoDownStatus==DownLoader.DOWN_COMPLETE){
+					intent.putExtra(Constants.bundleKey.videoIsOnline, false);
+					intent.putExtra(Constants.bundleKey.videoUri, lesson.getVideoPath());
+				}else{
+					//播放网络
+					intent.putExtra(Constants.bundleKey.videoIsOnline, true);
+					intent.putExtra(Constants.bundleKey.videoUri, lesson.getVideoUri());
+				}
+				startActivity(intent);
+			}
+		});
+		btnVideoDownload.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(downLoader.isStop()){
+					new Thread(){
+						public void run() {
+							downLoader.down();
+						};
+					}.start();
+				}else{
+					downLoader.pause();
+				}
+			}
+		});
+		btnVideoDelete.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				downLoader.deleteFile();
+			}
+		});
+		workSpace.addView(videoOpView);
+		updateVideoDownState(videoDownStatus, downLoader);
+	}
 	
+	private void updateVideoDownState(int status,DownLoader downloader){
+		videoDownStatus=status;
+		int percent;
+		switch (status) {
+		case DownLoader.DOWN_NONE:
+			tvVideoInfo.setText("视频未下载，您可以选择在线播放或下载到本地后播放");
+			btnVideoPlay.setText("在线播放");
+			btnVideoDownload.setText("下载");
+			btnVideoDownload.setEnabled(true);
+			btnVideoDelete.setEnabled(false);
+			pbVideoDownload.setVisibility(View.INVISIBLE);
+			break;
+		case DownLoader.DOWN_PAUSE:
+			tvVideoInfo.setText("任务暂停，您可以选择在线播放或下载到本地后播放");
+			btnVideoPlay.setText("在线播放");
+			btnVideoDownload.setText("续传");
+			btnVideoDownload.setEnabled(true);
+			btnVideoDelete.setEnabled(true);
+			pbVideoDownload.setVisibility(View.VISIBLE);
+			percent=downloader.getPercent();
+			if(percent>=0&&percent<=100){
+				int progress=(int) ((float)pbVideoDownload.getMax()/(float)100*percent);
+				pbVideoDownload.setProgress(progress);
+			}else{
+				Toast.makeText(context, Constants.DOWNSIZEWRONG,Toast.LENGTH_LONG ).show();
+				downloader.deleteFile();
+				updateVideoDownState(DownLoader.DOWN_NONE,downloader);
+			}
+			break;
+		case DownLoader.DOWN_BEGIN:
+			tvVideoInfo.setText("任务开始，您可以选择在线播放或下载到本地后播放");
+			btnVideoPlay.setText("在线播放");
+			btnVideoDownload.setText("暂停");
+			btnVideoDownload.setEnabled(true);
+			btnVideoDelete.setEnabled(true);
+			pbVideoDownload.setVisibility(View.VISIBLE);
+			break;
+		case DownLoader.DOWN_LOADING:
+//			tvVideoInfo.setText("任务暂停，您可以选择在线播放或下载到本地后播放");
+//			btnVideoPlay.setText("在线播放");
+//			btnVideoDownload.setText("暂停");
+//			btnVideoDownload.setEnabled(true);
+//			btnVideoDelete.setEnabled(true);
+//			sbVideoDownload.setVisibility(View.VISIBLE);
+			percent=downloader.getPercent();
+			if(percent>=0&&percent<=100){
+				int progress=(int) ((float)pbVideoDownload.getMax()/(float)100*percent);
+				pbVideoDownload.setProgress(progress);
+			}else{
+				Toast.makeText(context, Constants.DOWNSIZEWRONG,Toast.LENGTH_LONG ).show();
+				downloader.deleteFile();
+				updateVideoDownState(DownLoader.DOWN_NONE,downloader);
+			}
+			break;
+		case DownLoader.DOWN_COMPLETE:
+			tvVideoInfo.setText("任务完成，点击播放观看视频");
+			btnVideoPlay.setText("   播  放   ");
+			btnVideoDownload.setText("完成");
+			btnVideoDownload.setEnabled(false);
+			btnVideoDelete.setEnabled(true);
+			pbVideoDownload.setVisibility(View.INVISIBLE);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private Handler handler=new Handler(){
+		@Override
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case Constants.msgWhat.error:
+				String tip = msg.getData().getString(Constants.bundleKey.errorMsg);
+				Toast.makeText(context, tip, Toast.LENGTH_SHORT).show();
+				break;
+			case Constants.msgWhat.downstate_changed:
+				int index=msg.arg1;
+				int downState=msg.arg2;
+				updateVideoDownState(downState, downLoader);
+				break;
+			default:
+				break;
+			}
+			super.handleMessage(msg);
+		};
+	};
 
 	private void pause() {
 		if (!this.isPlaying || null==player)
@@ -652,7 +862,7 @@ public class LessonContents extends BaseActivity {
 		SettingDialog settingDialog=new SettingDialog(this, setting){
 			@Override
 			protected void onSettingChanged(Setting setting) {
-				for(int i=0;i<tabNumber;i++){
+				for(int i=0;i<articlesNum;i++){
 					setTextProperty(tvArticles[i],setting);
 				}
 			}

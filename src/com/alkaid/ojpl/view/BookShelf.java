@@ -65,8 +65,6 @@ public class BookShelf extends BaseActivity{
 	private Map<Integer, Integer> downloadStates;
 	
 	private final int msg_what_exit=1000;
-	/**messeage.what 更新bookView*/
-	public static final int msg_what_updateBookView=2000;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -193,7 +191,7 @@ public class BookShelf extends BaseActivity{
 			final BookItem bookItem=bookItems.get(i);
 			//判断书的类型，五十音图的书要单独处理
 			if(bookItem.getId().equals(Constants.FIFTYMAPID)){
-				downloadStates.put(i, DownLoader.DOWN_COMPLETE);
+				downloadStates.put(i, DownLoader.TASK_COMPLETE);
 			}else{
 				//初始化下载图标的状态
 				SharedPreferences sharedPreferences = getSharedPreferences(Constants.sharedPreference.bookConfig.name, Context.MODE_PRIVATE);
@@ -213,7 +211,7 @@ public class BookShelf extends BaseActivity{
 					String zipDir = Constants.PATH_RES+"/"+bookItem.getDownloadAdd().substring(bookItem.getDownloadAdd().lastIndexOf(SUBSTRING_WORD)+1,bookItem.getDownloadAdd().lastIndexOf("."));
 					File f = new File(zipDir);
 					if(f.exists()){
-						status = DownLoader.DOWN_COMPLETE;
+						status = DownLoader.TASK_COMPLETE;
 					}else{
 						status=DownLoader.DOWN_NONE;
 					}
@@ -453,7 +451,7 @@ public class BookShelf extends BaseActivity{
 				String tip = msg.getData().getString(Constants.bundleKey.errorMsg);
 				Toast.makeText(context, tip, Toast.LENGTH_SHORT).show();
 				break;
-			case msg_what_updateBookView:
+			case Constants.msgWhat.downstate_changed:
 				int index=msg.arg1;
 				int downState=msg.arg2;
 				downloadStates.put(index, downState);
@@ -467,7 +465,7 @@ public class BookShelf extends BaseActivity{
 	};
 	/**
 	 * 根据下载状态更新ui
-	 * @param status  下载状态 包括  {@link DownLoader#DOWN_BEGIN}、{@link DownLoader#DOWN_COMPLETE}、{@link DownLoader#DOWN_LOADING}、{@link DownLoader#DOWN_NONE}、{@link DownLoader#DOWN_PAUSE}
+	 * @param status  下载状态 包括  {@link DownLoader#DOWN_BEGIN}、{@link DownLoader#TASK_COMPLETE}、{@link DownLoader#DOWN_LOADING}、{@link DownLoader#DOWN_NONE}、{@link DownLoader#DOWN_PAUSE}
 	 * @param bookIndex  书本索引
 	 */
 	private void updateBookState(int status, final int bookIndex) {
@@ -488,7 +486,7 @@ public class BookShelf extends BaseActivity{
 	}
 	/**
 	 * 根据下载状态更新ui  这个方法用于有bookViewHolder缓存的更新
-	 * @param status  下载状态 包括 {@link DownLoader#DOWN_BEGIN}、{@link DownLoader#DOWN_COMPLETE}、{@link DownLoader#DOWN_LOADING}、{@link DownLoader#DOWN_NONE}、{@link DownLoader#DOWN_PAUSE}
+	 * @param status  下载状态 包括 {@link DownLoader#DOWN_BEGIN}、{@link DownLoader#TASK_COMPLETE}、{@link DownLoader#DOWN_LOADING}、{@link DownLoader#DOWN_NONE}、{@link DownLoader#DOWN_PAUSE}
 	 * @param bookIndex  书本索引
 	 * @param bookViewHolder bookView视图缓存
 	 * @param operation 是否进行非UI的操作,具体指下载解压等行为(实际上该参数是专为ListView更新UI用的)
@@ -544,14 +542,14 @@ public class BookShelf extends BaseActivity{
 				LogUtil.i("Downloading=======filesize="+downloader.getFileSize());
 				percent.setText(downloader.getPercent()+"%");
 			}else{
-				Toast.makeText(context, Constants.DOWNERROR,Toast.LENGTH_SHORT ).show();
+				Toast.makeText(context, Constants.DOWNERROR,Toast.LENGTH_LONG ).show();
 				downloader.deleteFile();
 				downloader.setCurSize(0);
 				if(operation){
 					if(IOUtil.checkSDCard()==false){
-						Toast.makeText(context,Constants.SDERROR, Toast.LENGTH_SHORT).show();
+						Toast.makeText(context,Constants.SDERROR, Toast.LENGTH_LONG).show();
 					}else if(NetWorkUtil.isOnline(context)==false){
-						Toast.makeText(context, Constants.NETERROR, Toast.LENGTH_SHORT).show();
+						Toast.makeText(context, Constants.NETERROR, Toast.LENGTH_LONG).show();
 					}else{
 						new Thread(){								
 							@Override
@@ -563,7 +561,7 @@ public class BookShelf extends BaseActivity{
 				}
 			}
 			break;
-		case DownLoader.DOWN_COMPLETE:
+		case DownLoader.TASK_COMPLETE:
 			downState.setVisibility(View.VISIBLE);
 			downState.setBackgroundColor(0x0);
 			image1.setVisibility(View.VISIBLE);
@@ -583,7 +581,7 @@ public class BookShelf extends BaseActivity{
 			percent.setVisibility(View.GONE);
 			progress.setVisibility(View.GONE);
 			break;
-		case DownLoader.ZIP_BEGIN://开始解压
+		case DownLoader.DOWN_COMPLETE://开始解压
 			downState.setVisibility(View.VISIBLE);
 			downState.setBackgroundColor(Color.WHITE);
 			downState.getBackground().setAlpha(100);
@@ -609,9 +607,9 @@ public class BookShelf extends BaseActivity{
 						} catch (IOException e) {
 							LogUtil.e(e);
 						}
-						Message msg=handle.obtainMessage(msg_what_updateBookView);
+						Message msg=handle.obtainMessage(Constants.msgWhat.downstate_changed);
 						msg.arg1=bookIndex;
-						msg.arg2=DownLoader.DOWN_COMPLETE;
+						msg.arg2=DownLoader.TASK_COMPLETE;
 						handle.sendMessage(msg);
 					};
 				}.start();

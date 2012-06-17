@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@color/control_back"
+    >
+    <LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent" android:layout_height="wrap_content"
+	    android:gravity="center_horizontal" android:layout_marginTop="5dip"
+	    android:layout_marginBottom="5dip">
+	    <TextView android:id="@+id/has_played"
+	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	android:layout_gravity="center_vertical" android:layout_marginLeft="10dp"
+	    	android:textColor="@color/white"
+	    	android:textSize="11sp" android:text="00:00:00" />
+	    <SeekBar android:id="@+id/seekbar"
+	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	android:paddingLeft="5dip" android:paddingRight="5dip"
+	    	android:thumb="@drawable/vthumb"  
+	    	android:maxHeight="8dp" android:minHeight="8dp"
+	    	android:layout_marginLeft="10dip" android:layout_marginRight="10dip"
+	    	android:layout_weight="1" android:progressDrawable="@drawable/seekbar_style"/>
+	    <TextView android:id="@+id/duration"
+	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	android:layout_gravity="center_vertical" android:layout_marginRight="10dp"
+	    	android:textColor="@color/white"
+	    	android:textSize="11sp" android:text="00:00:00"/>
+	</LinearLayout>
+	
+	<LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent" android:layout_height="80dp"
+	    android:gravity="center" android:paddingLeft="70dp"
+	    android:paddingRight="70dp" android:background="@android:color/transparent">
+    <!-- <ImageButton
+    	android:id="@+id/btnPlayList"
+    	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_vertical"
+	    android:layout_weight="1"
+	    android:src="@drawable/eject"
+	    android:scaleType="fitCenter"
+	    android:background="#0000003D" 
+    /> -->
+    <LinearLayout android:layout_width="300dp"
+	    android:layout_height="fill_parent" android:gravity="center">
+    <ImageButton android:id="@+id/btnPre"
+    	android:layout_width="50dp" android:layout_height="50dp"
+	    android:layout_gravity="center_vertical" android:layout_weight="1"
+	    android:src="@drawable/sel_vprevious" android:scaleType="fitCenter"
+	    android:background="@android:color/transparent"   
+    />
+    <ImageButton android:id="@+id/btnPlay"
+    	android:layout_width="70dp" android:layout_height="70dp"
+	    android:layout_gravity="center_vertical" android:layout_weight="1"
+	    android:src="@drawable/sel_vplay" android:scaleType="fitCenter"
+	    android:background="@android:color/transparent"   
+    />
+    <ImageButton android:id="@+id/btnNext"
+    	android:layout_width="50dp" android:layout_height="50dp"
+	    android:layout_gravity="center_vertical" android:layout_weight="1"
+	    android:src="@drawable/sel_vnext" android:scaleType="fitCenter"
+	    android:background="@android:color/transparent"   
+    />
+    </LinearLayout>
+    <ImageButton android:id="@+id/btnSound"
+    	android:layout_width="40dp" android:layout_height="40dp"
+    	android:layout_marginLeft="20dp"
+	    android:layout_gravity="center_vertical"
+	    android:src="@drawable/sel_vsound" android:scaleType="fitCenter"
+	    android:background="@android:color/transparent"
+    />
+    </LinearLayout>
+</LinearLayout>
