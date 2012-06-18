@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, OurJpLangActivity!</string>
     <string name="app_name">日语初学者</string>
 	<string name="loading">正在加载...</string>
 	<string name="initNotFinished">数据未加载完成</string>	
@@ -9,7 +8,8 @@
 	<!-- 支付宝商品的名称和其他信息 -->
 	<string name="subjectName">日语初学者付费</string>
 	<string name="subjectBody">免积分，去广告</string>
-	<string name="subjectFee">0.01</string>
+	<string name="subjectFee">4.99</string>
+	<string name="subjectAlert">仅需要支付￥4.99,就可以永久去除广告并获得软件完整功能下载所有资源</string>
 	
 	<!-- 支付宝包含的String -->
 	<string name="activity_remote_service_binding">AppDemo4</string>

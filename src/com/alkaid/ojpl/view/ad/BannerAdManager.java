@@ -32,6 +32,12 @@ public class BannerAdManager {
 		boolean isFree=LicenseManager.authLicense(context);
 		if(!isFree)
 			showBanner=!"false".equals(AppConnect.getInstance(context).getConfig(KEY_SHOW_BANNER));
+		else
+			showBanner=false;
+	}
+	
+	public void destroyAd(){
+		mAdContainer.removeAllViews();
 	}
 	
 	public void creatAd(){
@@ -51,6 +57,16 @@ public class BannerAdManager {
 			@Override
 			public void onReceivedFreshAd(DomobAdView adview) {
 				mAdContainer.setVisibility(View.VISIBLE);
+				//检查证书 取消广告
+				new Thread(){
+					@Override
+					public void run() {
+						super.run();
+						boolean isFree=LicenseManager.authLicense(context);
+						if(isFree)
+							destroyAd();
+					}
+				}.start();
 			}
 			@Override
 			public void onFailedToReceiveFreshAd(DomobAdView adview) {

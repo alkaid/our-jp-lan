@@ -3,6 +3,7 @@ package com.alkaid.ojpl.alipay;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -13,9 +14,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
+
 import com.alkaid.ojpl.R;
-import com.alkaid.ojpl.common.Constants;
 import com.alkaid.ojpl.common.Constants.sharedPreference.aliPay;
+import com.alkaid.ojpl.common.LicenseManager;
 
 public class AliPay {
 	static String TAG = "AppDemo4";
@@ -180,21 +182,28 @@ public class AliPay {
 						int retVal = resultChecker.checkSign();
 						// 返回验签结果以及交易状态
 						// 验签失败
-						if (retVal == ResultChecker.RESULT_CHECK_SIGN_FAILED) {
+						switch (retVal) {
+						case ResultChecker.RESULT_CHECK_SIGN_FAILED:
 							BaseHelper.showDialog(
 									mActivity,
 									"提示",
 									mActivity.getResources().getString(
 											R.string.check_sign_failed),
 									android.R.drawable.ic_dialog_alert);
-						} else {
+							break;
+						case ResultChecker.RESULT_CHECK_SIGN_SUCCEED:
 							if(tradeStatus.equals("{9000}")){
+								//创建免费证书
+								LicenseManager.creatLicense(mActivity);
 								BaseHelper.showDialog(mActivity, "提示",aliPay.successCostAlert, R.drawable.infoicon);
 							}else{
 								BaseHelper.showDialog(mActivity,"提示", aliPay.failCostAlert, R.drawable.infoicon);
 							}
+							break;
+						default:
+							BaseHelper.showDialog(mActivity,"提示", aliPay.failCostAlert, R.drawable.infoicon);
+							break;
 						}
-
 					} catch (Exception e) {
 						e.printStackTrace();
 

@@ -378,7 +378,8 @@ public class HttpUtils {
 		HttpUriRequest req = null;
 		// url添加get参数
 		if (method.equals(METHOD_GET)) {
-			url = url + "?" + encodeUrl(params, false);
+			if(params.size()>0)
+				url = url + "?" + encodeUrl(params, false);
 			req = new HttpGet(url);
 		} else {
 			req = new HttpPost(url);

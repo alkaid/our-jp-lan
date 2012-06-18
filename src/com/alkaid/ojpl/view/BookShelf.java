@@ -53,6 +53,7 @@ import com.alkaid.ojpl.view.ad.PointsManager;
 import com.alkaid.ojpl.view.ui.CustAlertDialog;
 import com.alkaid.ojpl.view.ui.OperateDialog;
 import com.umeng.fb.UMFeedbackService;
+import com.umeng.update.UmengUpdateAgent;
 
 public class BookShelf extends BaseActivity{
 	
@@ -69,6 +70,8 @@ public class BookShelf extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bookshelf);
+		//友盟自动更新
+		UmengUpdateAgent.update(this);
 		Button btnShare=(Button) findViewById(R.id.btnShare);
 		Button btnFeedback=(Button) findViewById(R.id.btnFeedback);
 		btnShare.setOnClickListener(new View.OnClickListener() {
