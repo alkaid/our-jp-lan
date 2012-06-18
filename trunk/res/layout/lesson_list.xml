@@ -19,6 +19,12 @@
        	   android:layout_height="wrap_content"
        	   android:layout_centerInParent="true"
        	   android:background="@drawable/bookshelf_header_logo"/>
+        <Button android:id="@+id/btnShare" android:background="@drawable/sel_button"
+	        android:layout_centerVertical="true"
+	        android:layout_width="50dp" android:layout_height="36dp" android:focusable="true"
+	        android:text="分享" android:textSize="13sp" android:textColor="@color/white"
+	        android:layout_marginRight="6.4dp" 
+	        android:layout_alignParentRight="true" />
     </RelativeLayout>
     
     <LinearLayout android:id="@+id/llAd" 

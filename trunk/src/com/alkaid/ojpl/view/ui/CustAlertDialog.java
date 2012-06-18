@@ -3,8 +3,6 @@
  */
 package com.alkaid.ojpl.view.ui;
 
-import java.util.ArrayList;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -276,13 +275,13 @@ public class CustAlertDialog extends Dialog{
             } else if (contentView != null) {  
                 // if no message set  
                 // add the contentView to the dialog body  
-//                ((LinearLayout) layout.findViewById(R.id.content))  
-//                        .removeAllViews();  
-//                ((LinearLayout) layout.findViewById(R.id.content))  
-//                        .addView(contentView,   
-//                                new LayoutParams(  
-//                                        LayoutParams.WRAP_CONTENT,   
-//                                        LayoutParams.WRAP_CONTENT));  
+                ((LinearLayout) layout.findViewById(R.id.content))  
+                        .removeAllViews();  
+                ((LinearLayout) layout.findViewById(R.id.content))  
+                        .addView(contentView,   
+                                new LayoutParams(  
+                                        LayoutParams.FILL_PARENT,   
+                                        LayoutParams.FILL_PARENT));  
             }  
             dialog.setContentView(layout);  
             dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);

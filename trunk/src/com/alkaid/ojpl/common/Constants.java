@@ -20,6 +20,7 @@ public class Constants {
 	public static final String PATH_RES=PATH_APP+"/res";
 	//测试用
 //	public static final String PATH_RES=PATH_SD+"/HJApp/HJDjdry1/res";
+	
 	/** 解码key */
 	public static final String AESKEY="@www.hujiang.com";
 	/**SD不存在或者加载出错提示*/
@@ -60,6 +61,8 @@ public class Constants {
 		public static final String lessonTitle="lessonTitle";
 		/** 异常信息 */
 		public static final String errorMsg="errorMsg";
+		/** 需要弹出的信息*/
+		public static final String toastMag="toastMsg";
 		/** 书本id **/
 		public static final String bookItemId="bookItemId";
 		/** 视频播放地址 */
@@ -73,6 +76,8 @@ public class Constants {
 		public static final int error=-200;
 		/** 下载状态改变*/
 		public static final int downstate_changed=2000;
+		/** toast*/
+		public static final int toast=3000;
 	}
 	/** 积分相关常量*/
 	public static class points{
@@ -113,8 +118,15 @@ public class Constants {
 		}
 		
 		public static class aliPay{
-			public static final String successCostAlert="支付成功，您将获得去广告，免费获取资源等功能。";
+			public static final String successCostAlert="支付成功，您将获得去广告，免费获取所有资源等功能。";
 			public static final String failCostAlert="支付失败，请重新尝试，如果有不明之处，请联系我们。";
 		}
+	}
+	
+	public static class license{
+		public static final String uri="http://coodroid.com/android/index.php?route=ourjplan/license";
+		public static final String paramkeyLicense="license";
+		public static final String paramkeyDeviceid="deviceid";
+		public static final String paramkeyDeviceinfo="deviceinfo";
 	}
 }

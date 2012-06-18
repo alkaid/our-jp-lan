@@ -3,6 +3,8 @@
  */
 package com.alkaid.ojpl.view;
 
+import java.io.InputStream;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.Constants;
+import com.alkaid.ojpl.common.SNSShare;
 import com.alkaid.ojpl.data.BookItemOperator;
 import com.alkaid.ojpl.model.BookItem;
 import com.alkaid.ojpl.model.LessonItem;
@@ -84,6 +87,15 @@ public class LessonList extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				finish();
+			}
+		});
+		Button btnShare=(Button)findViewById(R.id.btnShare);
+		btnShare.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//umeng分享组件分享
+				InputStream is = context.getResources().openRawResource(R.drawable.share_pic_s);
+	        	SNSShare.share(context, is);
 			}
 		});
 	}
