@@ -3,6 +3,8 @@
  */
 package com.alkaid.ojpl.view.ui;
 
+import java.util.ArrayList;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.alkaid.ojpl.R;
@@ -32,9 +37,13 @@ public class CustAlertDialog extends Dialog{
 
     	private Context context;  
         private String title;  
-        private String message;  
+        private String message;
+        //单选框默认被选中的Item
+        private int defaultCheckedItem;
+    	private int checkedItem = -1;
         private String positiveButtonText;  
-        private String negativeButtonText;  
+        private String negativeButtonText;
+        private String[] singleChoiceItems;
         private View contentView;  
         private boolean canceledOnTouchOutside=false;
 //        private final static String DEFAULT_POSITIVE_TEXT="确定";
@@ -42,8 +51,7 @@ public class CustAlertDialog extends Dialog{
    
         private DialogInterface.OnClickListener   
                         positiveButtonClickListener,  
-                        negativeButtonClickListener;  
-   
+                        negativeButtonClickListener; 
         public Builder(Context context) { 
             this.context = context;  
         }  
@@ -162,7 +170,20 @@ public class CustAlertDialog extends Dialog{
             this.negativeButtonText = negativeButtonText;  
             this.negativeButtonClickListener = listener;  
             return this;  
-        }  
+        }
+        /**
+         * Set the singleChoiceItems'texts and their listener
+         * @param singleChoiceItems
+         * @param listener
+         * @param defaultCheckedItem 默认被选中的单选项
+         * @return
+         */
+        public Builder setSingleChoiceItems(String[] singleChoiceItems,int defaultCheckedItem){
+        	this.singleChoiceItems = singleChoiceItems;
+        	this.defaultCheckedItem = defaultCheckedItem;
+        	checkedItem = defaultCheckedItem;
+        	return this;
+        }
    
         /** 
          * Create the custom dialog 
@@ -177,7 +198,35 @@ public class CustAlertDialog extends Dialog{
             dialog.addContentView(layout, new LayoutParams(  
                     LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));  
             // set the dialog title  
-//            ((TextView) layout.findViewById(R.id.tvTitle)).setText(title);  
+//            ((TextView) layout.findViewById(R.id.tvTitle)).setText(title);
+            //set the askRadioGroup
+            if(singleChoiceItems!=null&&singleChoiceItems.length>0){
+            	RadioGroup rg = (RadioGroup) layout.findViewById(R.id.rgPointAsk);
+            	int i = 0;
+            	while(i<singleChoiceItems.length){
+            		if(singleChoiceItems[i] != null){
+	            		RadioButton rb = new RadioButton(context);
+	            		rb.setId(i);
+	            		rb.setText(singleChoiceItems[i]);
+	            		//默认被选中
+	            		if(i == defaultCheckedItem){
+	            			rb.setChecked(true);
+	            		}
+	            		rg.addView(rb);
+            		}
+            		i++;           		
+            	}
+            	rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+					
+					@Override
+					public void onCheckedChanged(RadioGroup group, int checkedId) {
+						checkedItem = checkedId;
+					}
+				});
+            }else{
+            	layout.findViewById(R.id.rgPointAsk).setVisibility(  
+                        View.GONE);  
+            }
             // set the confirm button  
             if (positiveButtonText != null) {  
                 ((Button) layout.findViewById(R.id.positiveButton))  
@@ -190,7 +239,7 @@ public class CustAlertDialog extends Dialog{
                             	}else{
                                     positiveButtonClickListener.onClick(  
                                             dialog,   
-                                            DialogInterface.BUTTON_POSITIVE);  
+                                            checkedItem);  
                             	}
                             }  
                         });  

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.alkaid.ojpl.R;
+import com.alkaid.ojpl.alipay.AliPay;
 import com.alkaid.ojpl.common.Constants;
 import com.alkaid.ojpl.common.Global;
 import com.alkaid.ojpl.common.LogUtil;
@@ -62,10 +63,10 @@ public abstract class BaseActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	        case R.id.itemFeedback:
+//	        case R.id.itemFeedback:
 	        // 调用反馈提供的接口，进入反馈界面
-	        	UMFeedbackService.openUmengFeedbackSDK(context);
-	            return true;
+//	        	UMFeedbackService.openUmengFeedbackSDK(context);
+//	            return true;
 	        case R.id.itemAbout:
 	        	AlertDialog.Builder about = new AlertDialog.Builder(context);
 	        	about.setMessage(Constants.ABOUT)
@@ -83,6 +84,10 @@ public abstract class BaseActivity extends Activity {
 	        	return true;
 	        case R.id.itemMore:
 	        	PointsManager.showOffers(context);
+	        	return true;
+	        case R.id.itemCost:
+	        	AliPay pay = new AliPay(this);
+	        	pay.pay();
 	        	return true;
 	        default:
 	        	return false;

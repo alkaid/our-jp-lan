@@ -1,12 +1,18 @@
 package com.alkaid.ojpl.view.ad;
 
+import java.io.InputStream;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
+import com.alkaid.ojpl.R;
+import com.alkaid.ojpl.alipay.AliPay;
 import com.alkaid.ojpl.common.Constants;
 import com.alkaid.ojpl.common.LicenseManager;
 import com.alkaid.ojpl.common.LogUtil;
+import com.alkaid.ojpl.common.SNSShare;
 import com.alkaid.ojpl.view.ui.CustAlertDialog;
 import com.waps.AppConnect;
 import com.waps.UpdatePointsNotifier;
@@ -83,18 +89,33 @@ public class PointsManager {
 			break;
 		case GETPOINTS_SUCCESS:
 			int points=updatePoints.getTotalPoints();
-			tip="每部分学习资料阅读需要"+Constants.points.spendPerAction+"积分,您当前积分为"+points+",积分不足,点击获取积分按钮免费获得积分";
+			tip="阅读本章节需要"+Constants.points.spendPerAction+"积分,您当前积分为"+points+",积分不足,请选择相对应的方式免费获取积分";
 			
-			if(points>Constants.points.spendPerAction){
+			if(points>=Constants.points.spendPerAction){
 				return true;
 			}
 			new CustAlertDialog.Builder(context)
 			.setMessage(tip)
-			.setPositiveButton("获取积分", new DialogInterface.OnClickListener(){
+			.setSingleChoiceItems(new String[]{"通过下载应用免费获取积分","通过微博分享免费获取积分","通过支付宝消费"+context.getString(R.string.subjectFee)+"元购买无广告永久免费版"}, 1)
+			.setPositiveButton("确定", new DialogInterface.OnClickListener(){
 				@Override
 				public void onClick(DialogInterface dialog,
 						int which) {
-					showOffers();
+					switch(which){
+					//0为积分墙获取积分,1为分享获取积分,2为支付宝付费
+					case 0:
+						showOffers();
+						break;
+					case 1:
+						InputStream is = context.getResources().openRawResource(R.drawable.share_pic_s);
+			        	SNSShare.share(context, is);
+						break;
+					case 2:
+						new AliPay((Activity) context).pay();
+						break;
+					default:
+						break;
+					}
 					dialog.dismiss();
 				}
 			})
