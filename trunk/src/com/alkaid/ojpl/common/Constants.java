@@ -111,5 +111,10 @@ public class Constants {
 			public static final String qqweiboDate="qqweiboDate";
 			public static final String renrenDate="renrenDate";
 		}
+		
+		public static class aliPay{
+			public static final String successCostAlert="支付成功，您将获得去广告，免费获取资源等功能。";
+			public static final String failCostAlert="支付失败，请重新尝试，如果有不明之处，请联系我们。";
+		}
 	}
 }
