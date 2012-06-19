@@ -35,6 +35,8 @@ import com.alkaid.ojpl.view.ui.CustAlertDialog;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.UMFeedbackService;
 import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
 
 /**
  * 所有Activity的基类 统一菜单栏
@@ -112,7 +114,30 @@ public abstract class BaseActivity extends Activity {
 //	        	SNSShare.share(context, is);
 //	        	return true;
 	        case R.id.itemUpdate:
-	        	UmengUpdateAgent.update(context);
+	        	UmengUpdateAgent.setUpdateAutoPopup(false);
+	        	UmengUpdateAgent.update(this);
+	            UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+	                    @Override
+	                    public void onUpdateReturned(int updateStatus,UpdateResponse updateInfo) {
+	                        switch (updateStatus) {
+	                        case 0: // has update
+	                            UmengUpdateAgent.showUpdateDialog(context, updateInfo);
+	                            break;
+	                        case 1: // has no update
+	                            Toast.makeText(context, "没有更新", Toast.LENGTH_SHORT)
+	                                    .show();
+	                            break;
+	                        case 2: // none wifi
+	                            Toast.makeText(context, "没有wifi连接， 只在wifi下更新", Toast.LENGTH_SHORT)
+	                                    .show();
+	                            break;
+	                        case 3: // time out
+	                            Toast.makeText(context, "连接超时，请稍候重试", Toast.LENGTH_SHORT)
+	                                    .show();
+	                            break;
+	                        }
+	                    }
+	            });
 	        	return true;
 	        case R.id.itemMore:
 	        	PointsManager.showOffers(context);
