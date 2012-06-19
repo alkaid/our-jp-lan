@@ -3,7 +3,7 @@
 	<item android:id="@+id/itemAbout" android:icon="@android:drawable/ic_menu_agenda" android:title="关于"/>
 	<item android:id="@+id/itemFeedback" android:icon="@android:drawable/ic_menu_send" android:title="反馈" />
 	<item android:id="@+id/itemMore" android:icon="@android:drawable/ic_menu_more" android:title="更多应用" />
-	<item android:id="@+id/itemShare" android:icon="@android:drawable/ic_menu_share" android:title="分享" />
+	<item android:id="@+id/itemUpdate" android:icon="@android:drawable/ic_menu_share" android:title="检查更新" />
 	<item android:id="@+id/itemlicense" android:icon="@android:drawable/ic_menu_today" android:title="领取礼包" />
 	<item android:id="@+id/itemCost" android:icon="@android:drawable/ic_menu_view" android:title="获得完整版"/>
 </menu>
