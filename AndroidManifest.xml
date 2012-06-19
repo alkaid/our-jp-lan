@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alkaid.ojpl"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk android:minSdkVersion="7" />
     <application
@@ -58,7 +58,6 @@
                 <data     android:scheme="schema…"/>
             </intent-filter>
         </activity>
-		<activity android:name="net.miidi.credit.MiidiWebViewActivity" /> 
 		<!-- 友盟自动更新service -->
 		<service
 		    android:name="com.umeng.common.net.DownloadingService"
@@ -74,7 +73,7 @@
 		<meta-data android:name="WAPS_ID" android:value="8f76edb240ea177c9ae2adc4b7a11b65" /> 
 		<!--以下属性为分发渠道ID,编码表参见本文档末附表--> 
 		<meta-data android:value="WAPS" android:name="WAPS_PID" />  
-        <meta-data android:value="WAPS" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="万普" android:name="UMENG_CHANNEL"/> 
 		<!-- <meta-data android:value="WAPS" android:name="WAPS_PID" />  
         <meta-data android:value="多盟" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="QQ" android:name="WAPS_PID" />  
