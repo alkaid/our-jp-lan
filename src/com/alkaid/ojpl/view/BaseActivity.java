@@ -1,6 +1,5 @@
 package com.alkaid.ojpl.view;
 
-import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,12 +29,12 @@ import com.alkaid.ojpl.common.Global;
 import com.alkaid.ojpl.common.HttpUtils;
 import com.alkaid.ojpl.common.LicenseManager;
 import com.alkaid.ojpl.common.LogUtil;
-import com.alkaid.ojpl.common.SNSShare;
 import com.alkaid.ojpl.common.SystemUtil;
 import com.alkaid.ojpl.view.ad.PointsManager;
 import com.alkaid.ojpl.view.ui.CustAlertDialog;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.UMFeedbackService;
+import com.umeng.update.UmengUpdateAgent;
 
 /**
  * 所有Activity的基类 统一菜单栏
@@ -108,9 +107,12 @@ public abstract class BaseActivity extends Activity {
 //	        		.setCanceledOnTouchOutside(true)
 //	        		.create().show();
 	        	return true;
-	        case R.id.itemShare:
-	        	InputStream is = context.getResources().openRawResource(R.drawable.share_pic_s);
-	        	SNSShare.share(context, is);
+//	        case R.id.itemShare:
+//	        	InputStream is = context.getResources().openRawResource(R.drawable.share_pic_s);
+//	        	SNSShare.share(context, is);
+//	        	return true;
+	        case R.id.itemUpdate:
+	        	UmengUpdateAgent.update(context);
 	        	return true;
 	        case R.id.itemMore:
 	        	PointsManager.showOffers(context);
