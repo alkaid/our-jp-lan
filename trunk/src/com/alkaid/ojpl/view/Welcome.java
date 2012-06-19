@@ -33,8 +33,8 @@ public class Welcome extends BaseActivity{
 		MobclickAgent.onError(this);
 		//友盟以通知栏为反馈的形式
 		UMFeedbackService.enableNewReplyNotification(this, NotificationType.NotificationBar);
-		//友盟自动更新
-		UmengUpdateAgent.update(this);
+//		//友盟自动更新
+//		UmengUpdateAgent.update(this);
 		//全屏
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   
