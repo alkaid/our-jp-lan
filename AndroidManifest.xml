@@ -73,63 +73,28 @@
 		<meta-data android:name="WAPS_ID" android:value="8f76edb240ea177c9ae2adc4b7a11b65" /> 
 		<!--以下属性为分发渠道ID,编码表参见本文档末附表--> 
 		<meta-data android:value="WAPS" android:name="WAPS_PID" />  
-        <meta-data android:value="万普" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="WAPS" android:name="UMENG_CHANNEL"/> 
 		<!-- <meta-data android:value="WAPS" android:name="WAPS_PID" />  
-        <meta-data android:value="多盟" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="DOMOB" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="QQ" android:name="WAPS_PID" />  
-        <meta-data android:value="腾讯应用" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="QQ" android:name="WAPS_PID" />  
-        <meta-data android:value="新浪微博" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="QQ" android:name="WAPS_PID" />  
-        <meta-data android:value="人人网" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="QQ" android:name="UMENG_CHANNEL"/>
         <meta-data android:value="91" android:name="WAPS_PID" />  
-        <meta-data android:value="91手机助手" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="91" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="hiapk" android:name="WAPS_PID" />  
-        <meta-data android:value="安卓市场" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="HIAPK" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="gfan" android:name="WAPS_PID" />  
-        <meta-data android:value="机锋" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="GFAN" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="appChina" android:name="WAPS_PID" />  
-        <meta-data android:value="应用汇" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="APPCHINA" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="eoe" android:name="WAPS_PID" />  
-        <meta-data android:value="eoo优亿" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="EOE" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="mumayi" android:name="WAPS_PID" />  
-        <meta-data android:value="木蚂蚁" android:name="UMENG_CHANNEL"/> 
+        <meta-data android:value="MUMAYI" android:name="UMENG_CHANNEL"/> 
         <meta-data android:value="nduoa" android:name="WAPS_PID" />  
-        <meta-data android:value="N多" android:name="UMENG_CHANNEL"/>
+        <meta-data android:value="NDUOA" android:name="UMENG_CHANNEL"/>
         <meta-data android:value="goapk" android:name="WAPS_PID" />  
-        <meta-data android:value="安智" android:name="UMENG_CHANNEL"/> 
-        
-        <meta-data android:value="neng" android:name="WAPS_PID" /> 
-        <meta-data android:value="能助手" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="samsung" android:name="WAPS_PID" />  
-        <meta-data android:value="三星" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="coolmart" android:name="WAPS_PID" />  
-        <meta-data android:value="酷派" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="meizu" android:name="WAPS_PID" />  
-        <meta-data android:value="魅族市场" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="3G" android:name="WAPS_PID" />  
-        <meta-data android:value="3G安卓市场" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="paojiao" android:name="WAPS_PID" />  
-        <meta-data android:value="泡椒" android:name="UMENG_CHANNEL"/> 
-        
-        <meta-data android:value="anfone" android:name="WAPS_PID" />  
-        <meta-data android:value="安丰" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="aimi" android:name="WAPS_PID" />  
-        <meta-data android:value="爱米" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="iAndroid" android:name="WAPS_PID" />  
-        <meta-data android:value="爱卓" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="star" android:name="WAPS_PID" />  
-        <meta-data android:value="安卓星空" android:name="UMENG_CHANNEL"/> 
-        
-        <meta-data android:value="waptw" android:name="WAPS_PID" />  
-        <meta-data android:value="天网" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="baoruan" android:name="WAPS_PID" />  
-        <meta-data android:value="宝软" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="feiliu" android:name="WAPS_PID" />  
-        <meta-data android:value="飞流" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="digua" android:name="WAPS_PID" />  
-        <meta-data android:value="地瓜游戏" android:name="UMENG_CHANNEL"/> -->
-		
+        <meta-data android:value="GOAPK" android:name="UMENG_CHANNEL"/> 
+        -->
 		<!-- 多盟 -->
 		<activity android:name="cn.domob.android.ads.DomobActivity" android:theme="@android:style/Theme.Translucent"/>
 		<meta-data android:value="56OJzwHIuMwLtc3L0d" android:name="DOMOB_PID" />  
