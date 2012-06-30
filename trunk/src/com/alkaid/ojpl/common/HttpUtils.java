@@ -379,7 +379,11 @@ public class HttpUtils {
 		// url添加get参数
 		if (method.equals(METHOD_GET)) {
 			if(params.size()>0)
-				url = url + "?" + encodeUrl(params, false);
+				if(url.contains("?")){
+					url = url + encodeUrl(params, true);
+				}else{
+					url = url + "?" + encodeUrl(params, false);
+				}
 			req = new HttpGet(url);
 		} else {
 			req = new HttpPost(url);
@@ -413,7 +417,7 @@ public class HttpUtils {
 	 * @param url
 	 * @param method
 	 *            "GET"或"POST"
-	 * @param entityStr  用来构造StringEntity
+	 * @param entityStr  用来构造StringEntity 注意entityStr第一字符不能为'&'
 	 * @param header 请求头
 	 * @return
 	 * @throws IOException
@@ -426,7 +430,11 @@ public class HttpUtils {
 		HttpUriRequest req = null;
 		// url添加get参数
 		if (method.equals(METHOD_GET)) {
-			url = url + "?" + entityStr;
+			if(url.contains("?")){
+				url = url + "&"+entityStr;
+			}else{
+				url = url + "?" + entityStr;
+			}
 			req = new HttpGet(url);
 		} else {
 			req = new HttpPost(url);
