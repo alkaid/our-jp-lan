@@ -111,6 +111,7 @@ public class LessonDao {
 				if(articleTemplate.getType().getEn().equals(typeEnFromDat)){
 					text.delete(0, firstIndexOfLine+1)
 						.delete(text.lastIndexOf("\n"),text.length());
+					text.append("\n");
 //					article=new Article(lesson,articleTemplate.getTypeEn(),articleTemplate.getTypeZh(),articleTemplate.getMp3Name());
 					article=new Article(lesson, articleTemplate.getType());
 					article.setText(text.toString());
