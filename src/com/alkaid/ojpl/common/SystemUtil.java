@@ -28,7 +28,7 @@ public class SystemUtil {
 	 * @return
 	 */
 	public static String getLocalMacAddress(Context context) {
-		return ((WifiManager) context.getSystemService("wifi"))
+		return ((WifiManager) context.getSystemService(Context.WIFI_SERVICE))
 				.getConnectionInfo().getMacAddress();
 	}
 	/** 获得手机imei地址*/
