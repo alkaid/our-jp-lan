@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BookItems>
+	<!-- <BookItem id="书本的id">
+		<Name>书本的名称</Name>
+		<ImageAdd>书本的图片地址统一放在assets/img,格式为img/xxx.png</ImageAdd>
+		<DownLoadState>书本下载的状态,0表示未下载，1表示正在下载，2表示下载完毕</DownLoadState>
+		<Lessons>
+			<Lesson id="课文章节的id">
+				<title>课文标题</title>
+				<AudioAdd>课文音频地址</AudioAdd>
+			</Lesson>		
+			<Lesson id="课文章节的id">
+				<title>课文标题</title>
+				<AudioAdd>课文音频地址</AudioAdd>
+			</Lesson>		
+		</Lessons>
+	</BookItem> -->
+	<BookItem id="introduction">
+		<Name>introduction</Name>
+		<ImageAdd>img/introduction.png</ImageAdd>
+		<Lessons>
+			<Lesson id="xszengyan">
+				<title>小生赠言</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="xxxqianchong">
+				<title>学习向前冲</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="rrweiwo">
+				<title>人人为我，我为人人</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>>
+	
+	<BookItem id="book0">
+		<Name>fiftynMap</Name>
+		<ImageAdd>img/book0.png</ImageAdd>
+	</BookItem>
+	
+	<BookItem id="book1">
+		<Name>1-4</Name>
+		<ImageAdd>img/book1.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_1_1_4.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="1">
+				<title>第1课：はじめまして</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="2">
+				<title>第2课：ほんの気持ちです</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="3">
+				<title>第3课：これをください</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="4">
+				<title>第4课：そちらは何時から何時までですか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book2">
+		<Name>5-8</Name>
+		<ImageAdd>img/book2.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_1_5_8.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="5">
+				<title>第5课：甲子園へ行きますか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="6">
+				<title>第6课：いっしょに行きませんか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="7">
+				<title>第7课：ごめんください</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="8">
+				<title>第8课：そろそろ失礼します</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book3">
+		<Name>9-12</Name>
+		<ImageAdd>img/book3.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_1_9_12.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="9">
+				<title>第9课：残念です</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="10">
+				<title>第10课：チリソースはありませんか</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="11">
+				<title>第11课：これ、お願いします</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="12">
+				<title>第12课： お祭りはどうでしたか </title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book4">
+		<Name>13-16</Name>
+		<ImageAdd>img/book4.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_1_13_16.zip]]></DownLoadAdd>	
+		<Lessons>
+			<Lesson id="13">
+				<title>第13课：別々にお願いします</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="14">
+				<title>第14课：梅田まで行ってください</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="15">
+				<title>第15课：ご家族は？</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="16">
+				<title>第16课：使い方を教えてください</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book5">
+		<Name>17-20</Name>
+		<ImageAdd>img/book5.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_1_17_20.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="17">
+				<title>第17课：どうしましたか</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="18">
+				<title>第18课：趣味は何ですか</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="19">
+				<title>第19课：ダイエットはあしたからします</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="20">
+				<title>第20课：夏休みはどうするの？</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book6">
+		<Name>21-25</Name>
+		<ImageAdd>img/book6.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_1_21_25.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="21">
+				<title>第21课：わたしもそう思います</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="22">
+				<title>第22课：どんなアパートがいいですか</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="23">
+				<title>第23课：どうやって行きますか</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="24">
+				<title>第24课：手伝ってくれますか</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+			<Lesson id="25">
+				<title>第25课：いろいろお世話になりました</title>
+				<AudioAdd></AudioAdd>				
+			</Lesson>
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book7">
+		<Name>26-29</Name>
+		<ImageAdd>img/book7.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_2_26_29.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="26">
+				<title>第26课：どこにごみを出したらいいですか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="27">
+				<title>第27课：何でも作れるんですね</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="28">
+				<title>第28课：お茶でも飲みながら……</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="29">
+				<title>第29课：忘れ物をしてしまったんです</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>	
+		<BookItem id="book8">
+		<Name>30-33</Name>
+		<ImageAdd>img/book8.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_2_30_33.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="30">
+				<title>第30课：チケットを予約しておきます</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="31">
+				<title>第31课：インターネットを始めようと思っています</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="32">
+				<title>第32课：病気かもしれません</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="33">
+				<title>第33课：これはどういう意味ですか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>
+
+	<BookItem id="book9">
+		<Name>34-37</Name>
+		<ImageAdd>img/book9.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_2_34_37.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="34">
+				<title>第34课：するとおりにしてください</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="35">
+				<title>第35课：旅行社へ行けば、わかります</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="36">
+				<title>第36课：頭と体を使うようにしています</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="37">
+				<title>第37课：海を埋め立てて造られました</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>
+
+	<BookItem id="book10">
+		<Name>38-41</Name>
+		<ImageAdd>img/book10.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_2_38_41.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="38">
+				<title>第38课：片付けるのが好きなんです</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="39">
+				<title>第39课：遅れて、すみません</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="40">
+				<title>第40课：友達ができたかどうか、心配です</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="41">
+				<title>第41课：荷物を預かっていただけませんか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>
+	
+	<BookItem id="book11">
+		<Name>42-45</Name>
+		<ImageAdd>img/book11.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_2_42_45.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="42">
+				<title>第42课：ボーナスは何に使いますか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="43">
+				<title>第43课：やさしそうですね</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="44">
+				<title>第44课：この写真みたいにしてください</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="45">
+				<title>第45课：一生懸命練習したのに</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>	
+	
+	<BookItem id="book12">
+		<Name>46-50</Name>
+		<ImageAdd>img/book12.png</ImageAdd>
+		<DownLoadAdd><![CDATA[http://coodroid.com/down.php?f=djdry_2_46_50.zip]]></DownLoadAdd>
+		<Lessons>
+			<Lesson id="46">
+				<title>第46课：もうすぐ着くはずです</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="47">
+				<title>第47课：婚約したそうです</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="48">
+				<title>第48课：休ませていただきませんか</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="49">
+				<title>第49课：よろしくお伝えください</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+			<Lesson id="50">
+				<title>第50课：心から感謝いたします</title>
+				<AudioAdd></AudioAdd>
+			</Lesson>
+		</Lessons>
+	</BookItem>
+
+</BookItems>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ArticleType>
+	<Article>
+		<TypeEn>danci#shuangyu</TypeEn>
+		<TypeZh>单词</TypeZh>
+		<Mp3Name>danci</Mp3Name>
+	</Article>
+	<Article>
+		<TypeEn>huihua</TypeEn>
+		<TypeZh>会话</TypeZh>
+		<Mp3Name>huihua</Mp3Name>
+	</Article>
+	<Article>
+		<TypeEn>juxing</TypeEn>
+		<TypeZh>文型</TypeZh>
+		<Mp3Name>juxing</Mp3Name>
+	</Article>
+	<Article>
+		<TypeEn>liwen</TypeEn>
+		<TypeZh>例文</TypeZh>
+		<Mp3Name>liwen</Mp3Name>
+	</Article>
+	<Article>
+		<TypeEn>yufa</TypeEn>
+		<TypeZh>语法</TypeZh>
+		<Mp3Name>yufa</Mp3Name>
+	</Article>
+</ArticleType>

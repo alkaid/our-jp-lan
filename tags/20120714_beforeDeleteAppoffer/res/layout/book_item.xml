@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/book_id"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="bottom|center_horizontal"
+    android:background="@drawable/sel_book_bg"
+>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center_horizontal"
+>
+    <!-- 显示书本的图片 -->
+	<ImageView android:id="@+id/book_show_id"
+	    		 android:layout_width="73.4dip"
+	    		 android:layout_height="73.4dip"
+	    		 android:scaleType="center"
+	    		 android:layout_alignParentBottom="true" />
+  	<!-- 显示下载状态图片 -->  
+	<LinearLayout android:id="@+id/download_tag_id"
+	    		android:layout_width="73.4dip"
+	    		android:layout_height="30dip"
+				android:layout_alignParentBottom="true"
+				android:layout_centerHorizontal="true"
+				android:orientation="horizontal">
+		<LinearLayout android:id="@+id/download_state_id"
+		    		  android:layout_width="30dip"
+		    		  android:layout_height="30dip"
+		    		  android:orientation="vertical"
+		    		  android:layout_gravity="bottom"
+		    		  android:gravity="bottom"
+		    		  android:paddingLeft="10dip"	
+		    		  >
+		     <ImageView android:id="@+id/down_image1_id"
+		        		android:layout_width="15dip"
+		        		android:layout_height="15dip"
+		        		android:background="@drawable/downing"/>
+		     <ImageView android:id="@+id/down_image2_id"
+		        		android:layout_width="15dip"
+		        		android:layout_height="15dip"
+		        		android:visibility="gone"
+		        		android:background="@drawable/downing1"/>
+		</LinearLayout>
+		
+		<TextView android:id="@+id/download_percent_id"
+	    		  android:layout_width="40dip"
+	    		  android:layout_height="20dip"
+	    		  android:gravity="left"
+	    		  android:textSize="13sp"
+	    		  android:textColor="@android:color/white"
+	    		  android:text="0%"/>			    
+	</LinearLayout>
+	<ProgressBar android:id="@+id/zipLoad_id"
+	    		 android:layout_width="	20dip"
+	    		 android:layout_height="20dip"
+	    		 android:layout_alignParentBottom="true"
+				 android:layout_centerHorizontal="true"
+				 android:indeterminateDrawable="@drawable/progress_small"
+				 android:layout_above="@+id/download_tag_id"
+	    		 android:visibility="invisible"
+	    		 />
+
+</RelativeLayout>
+</LinearLayout>

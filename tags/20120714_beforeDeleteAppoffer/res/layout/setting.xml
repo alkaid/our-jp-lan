@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:paddingBottom="20dp">
+	<TextView android:id="@+id/tvFontSize" android:text="大小:" 
+	    android:layout_gravity="center_horizontal" android:gravity="center_horizontal|top"
+	    android:layout_width="fill_parent" android:layout_height="24dp"
+	    android:textColor="@android:color/black" android:layout_marginBottom="12dp" android:layout_marginTop="8dp"/>
+	<SeekBar android:id="@+id/sbFontSize" android:progressDrawable="@drawable/seekbar_style"
+        android:thumb="@drawable/thumb_normal" android:layout_gravity="center_horizontal"
+        android:layout_width="167dp" android:layout_height="16dp" android:max="120"
+        android:layout_marginBottom="5dp"/>
+	<TextView android:id="@+id/tvSpacing" android:text="行间距:" 
+	    android:textSize="11sp"
+	    android:textColor="@android:color/black" android:layout_marginBottom="5dp"
+	    android:layout_gravity="center_horizontal" android:gravity="center"
+	    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	<SeekBar android:id="@+id/sbSpacing" android:progressDrawable="@drawable/seekbar_style"
+        android:thumb="@drawable/thumb_normal" android:layout_gravity="center_horizontal"
+        android:layout_width="167dp" android:layout_height="16dp" android:max="180"
+        android:textColor="@android:color/black" android:layout_marginBottom="8dp"/>
+	<TextView android:text="mp3播放模式" 
+	    android:layout_gravity="center_horizontal" android:gravity="center"
+	    android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    android:textColor="@android:color/black" android:layout_marginBottom="2dp"/>
+    <RadioGroup android:id="@+id/rgPlayMode" android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_horizontal">
+        <RadioButton android:id="@+id/rdoSelect" android:text="手动选择" 
+            android:button="@drawable/radio" android:textSize="12sp" 
+            android:textColor="@android:color/black" android:paddingLeft="29px"/>
+        <RadioButton android:id="@+id/rdoSequence"  android:text="顺序播放" 
+            android:button="@drawable/radio" android:textSize="12sp" 
+            android:paddingLeft="29px" android:textColor="@android:color/black"/>
+        <RadioButton android:id="@+id/rdoOne" android:text="单课循环" 
+            android:button="@drawable/radio" android:textSize="12sp" 
+            android:paddingLeft="29px" android:textColor="@android:color/black"/>
+    </RadioGroup>
+	<LinearLayout android:orientation="horizontal" android:gravity="center_horizontal" 
+	    android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal">
+	    <Button android:id="@+id/btnSave" android:text="保存" 
+	        android:background="@drawable/sel_dialog_button"
+	        android:paddingTop="3dp" android:paddingBottom="3dp" 
+	        android:paddingLeft="10dp" android:paddingRight="10dp"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	    <Button android:id="@+id/btnReset" android:text="恢复默认" 
+	        android:paddingTop="3dp" android:paddingBottom="3dp" 
+	        android:paddingLeft="10dp" android:paddingRight="10dp"
+	        android:background="@drawable/sel_dialog_button" android:layout_marginLeft="10dp"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	    <Button android:id="@+id/btnCancel" android:text="取消" 
+	        android:paddingTop="3dp" android:paddingBottom="3dp" 
+	        android:paddingLeft="10dp" android:paddingRight="10dp"
+	        android:background="@drawable/sel_dialog_button" android:layout_marginLeft="10dp"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+	</LinearLayout>
+</LinearLayout>

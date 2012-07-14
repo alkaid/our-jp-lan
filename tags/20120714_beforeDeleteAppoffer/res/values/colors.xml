@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textcolor">#ff373737</color>
+    <color name="setting_text">#ff885a40</color>
+    <color name="lyric_lesson_back">#ffd0edfe</color>
+    <color name="lyric_text_selected">#ffb2b2b2</color>
+    <color name="list_text_bg">#fff4f0e7</color>
+    <color name="list_text_sel_bg">#ffcae2ef</color>
+    <color name="list_text">#ff454543</color>
+    <color name="about_text">#ffdddddd</color>
+    <color name="explorer_text">#ff333333</color>
+    <color name="copyright_statement">#ffcccccc</color>
+    <color name="white">#ffededed</color>
+    <color name="unfocused">#cccccccc</color>
+    <color name="pressed">#fff22fff</color>
+    <color name="selected">#fff33fff</color>
+    <color name="focused">#ffff44ff</color>
+    <color name="black">#ff000000</color>
+    <color name="green">#ff2dac30</color>
+    <color name="green_classic">#ff006200</color>
+    <color name="darkblue">#ff0084d1</color>
+    <color name="red">#ffca0b11</color>
+    <color name="darkgray">#99333333</color>
+    <color name="transparent">#00000000</color>
+    <color name="divider_color">#eecbcbcb</color>
+    <color name="orange">#fff86a00</color>
+    <color name="control_back">#aa000000</color>
+</resources>
