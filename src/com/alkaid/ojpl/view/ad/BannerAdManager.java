@@ -9,7 +9,6 @@ import cn.domob.android.ads.DomobAdView;
 
 import com.alkaid.ojpl.R;
 import com.alkaid.ojpl.common.LicenseManager;
-import com.waps.AppConnect;
 
 /**
  * 横幅广告管理类
@@ -30,9 +29,7 @@ public class BannerAdManager {
 	public BannerAdManager(Context context) {
 		this.context=context;
 		boolean isFree=LicenseManager.authLicense(context);
-		if(!isFree)
-			showBanner=!"false".equals(AppConnect.getInstance(context).getConfig(KEY_SHOW_BANNER));
-		else
+		if(isFree)
 			showBanner=false;
 	}
 	
