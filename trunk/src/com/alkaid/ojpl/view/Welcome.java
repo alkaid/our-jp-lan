@@ -18,8 +18,6 @@ import com.alkaid.ojpl.common.LogUtil;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.NotificationType;
 import com.umeng.fb.UMFeedbackService;
-import com.umeng.update.UmengUpdateAgent;
-import com.waps.AppConnect;
 
 public class Welcome extends BaseActivity{
 	/** 欢迎界面显示时间 */
@@ -61,7 +59,8 @@ public class Welcome extends BaseActivity{
 		protected Integer doInBackground(Void... params) {
 			//后台初始化全局
 			begin=new Date();
-			AppConnect.getInstance(Welcome.this);
+			//TODO waps
+//			AppConnect.getInstance(Welcome.this);
 			Global.initApp(Welcome.this);
 			return null;
 		}

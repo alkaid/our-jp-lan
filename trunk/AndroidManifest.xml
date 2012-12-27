@@ -67,34 +67,8 @@
         <!-- 友盟Appkey -->
         <meta-data android:value="4fcca333527015597a000010" android:name="UMENG_APPKEY"/> 
         
-        <!-- 万普积分墙 -->
-        <activity android:name="com.waps.OffersWebView" android:configChanges="keyboardHidden|orientation"/> 
-		<!--以下属性为应用ID,从万普后台获取--> 
-		<meta-data android:name="WAPS_ID" android:value="8f76edb240ea177c9ae2adc4b7a11b65" /> 
 		<!--以下属性为分发渠道ID,编码表参见本文档末附表--> 
-		<meta-data android:value="WAPS" android:name="WAPS_PID" />  
-        <meta-data android:value="WAPS" android:name="UMENG_CHANNEL"/> 
-		<!-- <meta-data android:value="WAPS" android:name="WAPS_PID" />  
-        <meta-data android:value="DOMOB" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="QQ" android:name="WAPS_PID" />  
-        <meta-data android:value="QQ" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="91" android:name="WAPS_PID" />  
-        <meta-data android:value="91" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="hiapk" android:name="WAPS_PID" />  
-        <meta-data android:value="HIAPK" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="gfan" android:name="WAPS_PID" />  
-        <meta-data android:value="GFAN" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="appChina" android:name="WAPS_PID" />  
-        <meta-data android:value="APPCHINA" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="eoe" android:name="WAPS_PID" />  
-        <meta-data android:value="EOE" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="mumayi" android:name="WAPS_PID" />  
-        <meta-data android:value="MUMAYI" android:name="UMENG_CHANNEL"/> 
-        <meta-data android:value="nduoa" android:name="WAPS_PID" />  
-        <meta-data android:value="NDUOA" android:name="UMENG_CHANNEL"/>
-        <meta-data android:value="goapk" android:name="WAPS_PID" />  
         <meta-data android:value="GOAPK" android:name="UMENG_CHANNEL"/> 
-        -->
 		<!-- 多盟 -->
 		<activity android:name="cn.domob.android.ads.DomobActivity" android:theme="@android:style/Theme.Translucent"/>
 		<meta-data android:value="56OJzwHIuMwLtc3L0d" android:name="DOMOB_PID" />  
